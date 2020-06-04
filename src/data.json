@@ -1,6 +1,26 @@
 [
-  { "title": "Bananas", "content": "Bananas! I will write some great placeholder text – and nobody writes better placeholder text than me, believe me – and I’ll write it very inexpensively. I will write some great, great text on your website’s Southern border, and I will make Google pay for that text. Mark my words. Lorem Ipsum is a choke artist. It chokes!" },
-  { "title": "Peppers", "content": "Peppers! I will write some great placeholder text – and nobody writes better placeholder text than me, believe me – and I’ll write it very inexpensively. I will write some great, great text on your website’s Southern border, and I will make Google pay for that text. Mark my words. Lorem Ipsum is a choke artist. It chokes!" },
-  { "title": "Oranges", "content": "Oranges! I will write some great placeholder text – and nobody writes better placeholder text than me, believe me – and I’ll write it very inexpensively. I will write some great, great text on your website’s Southern border, and I will make Google pay for that text. Mark my words. Lorem Ipsum is a choke artist. It chokes!" },
-  { "title": "Papaya", "content": "Papaya! I will write some great placeholder text – and nobody writes better placeholder text than me, believe me – and I’ll write it very inexpensively. I will write some great, great text on your website’s Southern border, and I will make Google pay for that text. Mark my words. Lorem Ipsum is a choke artist. It chokes!" }
+  {
+    "title": "Roma",
+    "price": "",
+    "image": "https://images-1.casa.it/360x265/listing/8908e17e915f91fc063069939af3d8e5",
+    "content": "Roma! I will write some great placeholder text – and nobody writes better placeholder text than me, believe me – and I’ll write it very inexpensively. I will write some great, great text on your website’s Southern border, and I will make Google pay for that text. Mark my words. Lorem Ipsum is a choke artist. It chokes!"
+  },
+  {
+    "title": "Bari",
+    "price": "",
+    "image": "https://images-1.casa.it/360x265/listing/0cc2ed94a6d2c1bdbef7c3b07ab96712",
+    "content": "Bari! I will write some great placeholder text – and nobody writes better placeholder text than me, believe me – and I’ll write it very inexpensively. I will write some great, great text on your website’s Southern border, and I will make Google pay for that text. Mark my words. Lorem Ipsum is a choke artist. It chokes!"
+  },
+  {
+    "title": "Milano",
+    "price": "",
+    "image": "https://images-1.casa.it/360x265/listing/6c08f20da91156ab45e39482bb0c29a0",
+    "content": "Milano! I will write some great placeholder text – and nobody writes better placeholder text than me, believe me – and I’ll write it very inexpensively. I will write some great, great text on your website’s Southern border, and I will make Google pay for that text. Mark my words. Lorem Ipsum is a choke artist. It chokes!"
+  },
+  {
+    "title": "Firenze",
+    "price": "",
+    "image": "https://images-1.casa.it/360x265/listing/fa0e0a1aaf65bc29281a08a440b2a982",
+    "content": "Firenze! I will write some great placeholder text – and nobody writes better placeholder text than me, believe me – and I’ll write it very inexpensively. I will write some great, great text on your website’s Southern border, and I will make Google pay for that text. Mark my words. Lorem Ipsum is a choke artist. It chokes!"
+  }
 ]

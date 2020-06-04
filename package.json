@@ -3,11 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bulma": "^0.7.4",
+    "@material-ui/core": "^4.10.0",
+    "@material-ui/icons": "^4.9.1",
+    "@types/react": "^16.9.35",
+    "bulma": "^0.7.5",
     "classnames": "^2.2.6",
-    "node-sass": "^4.11.0",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
+    "firebase": "^7.14.6",
+    "mdi-material-ui": "^6.16.0",
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-scripts": "2.1.5"
   },
   "scripts": {

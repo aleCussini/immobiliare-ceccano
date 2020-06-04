@@ -1,12 +1,20 @@
 import React from 'react'
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
 
-const Tile = ({ className, content, title }) => (
-  <div className='tile is-parent'>
-    <div className={'tile is-child notification box '.concat(className)}>
-      <p className='title'>{title}</p>
-      <span className='content'>{content}</span>
-    </div>
-  </div>
-)
+function Tile({className, content, title, image}) {
+
+    return (
+        <div className='tile is-parent'>
+            <Card variant={"outlined"}>
+                <CardHeader title={title}/>
+                <CardMedia component={"img"} image={image}/>
+                <CardContent>{content}</CardContent>
+            </Card>
+        </div>
+    )
+}
 
 export default Tile
