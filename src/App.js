@@ -1,14 +1,12 @@
 import React from 'react'
 import Content from './components/Content'
 import WindowDimensionsProvider from './components/WindowDimensionsProvider'
-import firebase from "./FirebaseConfig";
+import data from './data.json'
 
 const App = () => {
-    const articles = firebase.firestore().collectionGroup("real-estate-pd");
-    console.log("Articoli:  ", articles)
     return (
         <WindowDimensionsProvider>
-            <Content items={articles}/>
+            <Content items={data}/>
         </WindowDimensionsProvider>
     );
 }
