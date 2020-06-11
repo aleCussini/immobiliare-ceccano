@@ -1,7 +1,8 @@
 import React from 'react'
 import Content from './components/Content'
 import WindowDimensionsProvider from './components/WindowDimensionsProvider'
-import data from './data.json'
+import data_old from './data.json'
+import data from './components/Firebase/fb-function.js'
 
 const App = () => {
     return (

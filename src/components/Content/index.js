@@ -22,9 +22,11 @@ import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import Container from "@material-ui/core/Container";
 
+
 const useStyles = makeStyles((theme) => ({
     appBar: {
         borderBottom: `1px solid ${theme.palette.divider}`,
+        backgroundColor : '#e6e3e3',
     },
     toolbar: {
         flexWrap: 'wrap',
