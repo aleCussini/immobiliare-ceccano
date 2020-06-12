@@ -1,7 +1,7 @@
 import React from "react"
 import {Route, Switch} from "react-router-dom"
 import TileDetails from "./Content/TileDetails"
-import Content from "./Content"
+import Content from "./Content/Content"
 
 const Routes = ({items}) => {
     return (
