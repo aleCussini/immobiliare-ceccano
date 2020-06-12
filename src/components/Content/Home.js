@@ -27,17 +27,17 @@ function MyAppBar() {
         <AppBar variant={"elevation"} position="static" color="transparent" elevation={0}
                 className={classes.appBar}>
             <Toolbar className={classes.toolbar}>
-                <Link variant="h6" color="textPrimary" href={"#"} className={classes.toolbarTitle}>
+                <Link variant="h6" color="textPrimary" href={"/"} className={classes.toolbarTitle}>
                     Agenzia Demo
                 </Link>
                 <nav>
-                    <Link variant="h6" color="textPrimary" href={"www.google.it"} className={classes.link}>
+                    <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
                         Blog
                     </Link>
-                    <Link variant="h6" color="textPrimary" href={"www.google.it"} className={classes.link}>
+                    <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
                         Contatti
                     </Link>
-                    <Link variant="h6" color="textPrimary" href={"www.google.it"} className={classes.link}>
+                    <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
                         Chi Siamo?
                     </Link>
                 </nav>
