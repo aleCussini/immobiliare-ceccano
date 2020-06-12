@@ -7,7 +7,7 @@ const Routes = ({items}) => {
     return (
         <Switch>
             <Route path="/" exact render={(props) => <Content items={items} {...props}/>}/>
-            <Route path="/details" component={TileDetails}/>
+            <Route path="/details" render={(props) => <TileDetails {...props}/>}/>
         </Switch>
     )
 }

@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-function MyHeader() {
+function MyBanner() {
     const classes = useStyles()
     return (
         <div className={classes.heroContent}>
@@ -137,7 +137,7 @@ const Content = ({items}) => {
         <div>
             <Grid container xs={12} justify={"flex-start"} className={classes.heroContent}>
                 <Grid xs={4}/>
-                <Grid xs={4}><MyHeader/></Grid>
+                <Grid xs={4}><MyBanner/></Grid>
                 <Grid xs={4} sm={2} className={classes.searchForm}><MySearchForm/></Grid>
             </Grid>
             <ResponsiveLayout
