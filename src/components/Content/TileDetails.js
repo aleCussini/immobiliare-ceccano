@@ -54,13 +54,13 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function TileDetails(props) {
-    const {itemTitle} = props.location.state
+    const {item} = props.location.state
     const classes = useStyles()
     return (
         <div>
             <Typography align={"center"}
                         variant="h5"
-                        className={classes.itemTitle}>{"Dettagli " + itemTitle}</Typography>
+                        className={classes.itemTitle}>{"Dettagli " + item.title}</Typography>
             <Carousel autoPlay={false} indicators={true} animation={"fade"} className={classes.carousel}>
                 {
                     images.map(image =>

@@ -6,18 +6,18 @@ import CardMedia from "@material-ui/core/CardMedia"
 import CardActionArea from "@material-ui/core/CardActionArea"
 import {Link} from "react-router-dom"
 
-function Tile({content, title, image}) {
+function Tile({...item}) {
     return (
         <div className='tile is-parent'>
             <CardActionArea component={Link}
                             to={{
                                 pathname: '/details',
-                                state: {itemTitle: title}
+                                state: {item: item}
                             }}>
                 <Card variant={"outlined"}>
-                    <CardHeader title={title}/>
-                    <CardMedia component={"img"} image={image}/>
-                    <CardContent>{content}</CardContent>
+                    <CardHeader title={item.title}/>
+                    <CardMedia component={"img"} image={item.image}/>
+                    <CardContent>{item.content}</CardContent>
                 </Card>
             </CardActionArea>
         </div>
