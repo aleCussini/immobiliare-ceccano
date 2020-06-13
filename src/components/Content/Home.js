@@ -68,11 +68,11 @@ function MyFooter() {
     )
 }
 
-const Home = ({items}) => {
+const Home = () => {
     return (
         <div>
             <MyAppBar/>
-            <Routes items={items}/>
+            <Routes/>
             <MyFooter/>
         </div>
     )
