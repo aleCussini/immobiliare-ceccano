@@ -6,7 +6,7 @@ import CardMedia from "@material-ui/core/CardMedia"
 import CardActionArea from "@material-ui/core/CardActionArea"
 import {Link} from "react-router-dom"
 
-function Tile({...item}) {
+function Tile({item}) {
     return (
         <div className='tile is-parent'>
             <CardActionArea component={Link}

@@ -4,7 +4,7 @@ import Tile from './Tile'
 import {useWindowDimensions} from '../WindowDimensionsProvider'
 
 const DesktopView = ({items}) => {
-    const {width} = useWindowDimensions();
+    const {width} = useWindowDimensions()
     return (
         <div className='section'>
             <div
@@ -13,7 +13,7 @@ const DesktopView = ({items}) => {
                 })}
             >
                 {items.map((item) => (
-                    <Tile key={item.title} {...item} />
+                    <Tile key={item.title} item={item}/>
                 ))}
             </div>
         </div>
