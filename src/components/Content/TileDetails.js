@@ -1,13 +1,18 @@
-import React from "react"
-import Carousel from "react-material-ui-carousel"
-import CardMedia from "@material-ui/core/CardMedia"
+import React, {Component} from "react"
 import {makeStyles} from "@material-ui/core/styles"
-import Card from "@material-ui/core/Card"
 import Typography from "@material-ui/core/Typography"
+import 'react-image-gallery/styles/css/image-gallery.css'
+import Container from "@material-ui/core/Container"
+import CardMedia from "@material-ui/core/CardMedia"
+import Card from "@material-ui/core/Card"
+import "react-alice-carousel/lib/alice-carousel.css"
+import Grid from "@material-ui/core/Grid"
+import Button from "@material-ui/core/Button"
+import {NavigateBefore, NavigateNext} from "@material-ui/icons"
+import ReactAliceCarousel from "react-alice-carousel"
 
 const images = [
     "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112655-15.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200512114001-30.jpg",
     "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112643-9.jpg",
     "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112649-12.jpg",
     "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112634-5.jpg",
@@ -39,39 +44,78 @@ const images = [
 ]
 
 const useStyles = makeStyles((theme) => ({
-    itemTitle: {
-        marginTop: theme.spacing(3),
-        marginBottom: theme.spacing(3),
-    },
-    card: {
-        maxWidth: "max-content",
-        margin: "auto"
-    },
-    carousel: {
-        maxWidth: "max-content",
-        margin: "auto"
-    }
-}))
+        itemTitle: {
+            marginTop: theme.spacing(3),
+            marginBottom: theme.spacing(3),
+        },
+        card: {
+            maxWidth: "max-content",
+            margin: "auto"
+        },
+        carousel: {
+            maxWidth: "max-content",
+            margin: "auto"
+        }
+    })
+)
 
 function TileDetails(props) {
     const {item} = props.location.state
     const classes = useStyles()
+
     return (
         <div>
             <Typography align={"center"}
                         variant="h5"
                         className={classes.itemTitle}>{"Dettagli " + item.title}</Typography>
-            <Carousel autoPlay={false} indicators={true} animation={"fade"} className={classes.carousel}>
-                {
-                    images.map(image =>
-                        <Card className={classes.card}>
-                            <CardMedia component={"img"} image={image}/>
-                        </Card>
-                    )
-                }
-            </Carousel>
+            <Container maxWidth={"md"} style={{marginTop: '5%', marginBottom: '10%'}}>
+                <MyCarousel/>
+            </Container>
         </div>
     )
+}
+
+class MyCarousel extends Component {
+    state = {
+        galleryItems: images.map(image =>
+            <Card style={{maxWidth: "max-content", margin: "auto"}}>
+                <CardMedia component={"img"} image={image}/>
+            </Card>)
+    }
+
+    thumbItem = (item, i) => (
+        <Button onClick={() => this.Carousel.slideTo(i)}>
+            <img src={item} width={50} height={50} alt={"thumb"}/>
+        </Button>
+    )
+
+    render() {
+        return (
+            <div>
+                <Grid
+                    container
+                    direction="row"
+                    justify="space-evenly"
+                    alignItems="center">
+                    <Grid item>
+                        <Button onClick={() => this.Carousel.slidePrev()}><NavigateBefore/></Button>
+                    </Grid>
+                    <Grid item xs={8}>
+                        <ReactAliceCarousel
+                            dotsDisabled={true}
+                            buttonsDisabled={true}
+                            items={this.state.galleryItems}
+                            ref={(el) => (this.Carousel = el)}
+                        />
+                    </Grid>
+                    <Grid item>
+                        <Button onClick={() => this.Carousel.slideNext()}><NavigateNext/></Button>
+                    </Grid>
+                </Grid>
+                <nav>{images.map(this.thumbItem)}</nav>
+            </div>
+        )
+    }
 }
 
 export default TileDetails
