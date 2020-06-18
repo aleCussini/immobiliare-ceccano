@@ -27,7 +27,7 @@ const SearchBar = () => {
                                 },
                             }}
                             variant={"outlined"}
-                            style={{minWidth: 200}}
+                            style={{minWidth: 150}}
                             children={[
                                 <MenuItem value={10}>Comprare</MenuItem>,
                                 <MenuItem value={20}>Vendere</MenuItem>,
@@ -35,7 +35,6 @@ const SearchBar = () => {
                             ]}
                     />
                 </FormControl>
-                <br/>
                 <FormControl>
                     <InputLabel id="comune-select-label" style={{marginLeft: '5%'}}>Comune</InputLabel>
                     <Select labelId="comune-select-label"
@@ -47,7 +46,7 @@ const SearchBar = () => {
                                 },
                             }}
                             variant={"outlined"}
-                            style={{minWidth: 200}}
+                            style={{minWidth: 150}}
                             children={[
                                 <MenuItem value={10}>Roma</MenuItem>,
                                 <MenuItem value={20}>Firenze</MenuItem>,
@@ -55,13 +54,13 @@ const SearchBar = () => {
                             ]}
                     />
                 </FormControl>
-                <br/>
                 <FormControl>
-                    <TextField label={"Prezzo Min."} inputMode={"numeric"} variant={"outlined"}/>
+                    <TextField label={"Prezzo Min."} inputMode={"numeric"} variant={"outlined"}
+                               style={{width: 150}}/>
                 </FormControl>
-                <br/>
                 <FormControl>
-                    <TextField label={"Prezzo Max."} inputMode={"numeric"} variant={"outlined"}/>
+                    <TextField label={"Prezzo Max."} inputMode={"numeric"} variant={"outlined"}
+                               style={{width: 150}}/>
                 </FormControl>
                 <Button>Cerca</Button>
             </Toolbar>
