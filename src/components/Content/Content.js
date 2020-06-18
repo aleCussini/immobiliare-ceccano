@@ -1,4 +1,3 @@
-import Grid from "@material-ui/core/Grid"
 import ResponsiveLayout from "../ResponsiveLayout"
 import DesktopView from "./DesktopView"
 import MobileView from "./MobileView"
@@ -6,7 +5,6 @@ import React, {Component} from "react"
 import {withStyles} from "@material-ui/core"
 import db from "../Firebase/firebase-db"
 import MyBanner from "./Banner"
-import MySearchForm from "./SearchForm"
 
 const styles = theme => ({
     heroContent: {
@@ -41,11 +39,7 @@ class Content extends Component {
         const {classes} = this.props
         return (
             <div>
-                <Grid container xs={12} justify={"flex-start"} className={classes.heroContent}>
-                    <Grid xs={4}/>
-                    <Grid xs={4}><MyBanner/></Grid>
-                    <Grid xs={4} sm={2} className={classes.searchForm}><MySearchForm/></Grid>
-                </Grid>
+                <div className={classes.heroContent}><MyBanner/></div>
                 <ResponsiveLayout
                     breakPoint={767}
                     renderDesktop={() => (
