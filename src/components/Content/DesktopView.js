@@ -11,24 +11,24 @@ import Select from "@material-ui/core/Select"
 import MenuItem from "@material-ui/core/MenuItem"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
+import {makeStyles} from "@material-ui/core/styles"
 
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    }
+}))
 const SearchBar = () => {
+    const classes = useStyles()
     return (
         <AppBar position="static" color={"white"} style={{marginBottom: '2%'}}>
             <Toolbar style={{display: "flex", justifyContent: "space-between"}}>
                 <div>
-                    <FormControl>
-                        <InputLabel id="type-select-label" style={{marginLeft: '5%'}}>Per?</InputLabel>
+                    <FormControl className={classes.formControl}
+                                 variant={"outlined"}>
+                        <InputLabel id="type-select-label">Per?</InputLabel>
                         <Select labelId="type-select-label"
-                                MenuProps={{
-                                    PaperProps: {
-                                        style: {
-                                            width: "250",
-                                        },
-                                    },
-                                }}
-                                variant={"outlined"}
-                                style={{minWidth: 150}}
                                 children={[
                                     <MenuItem value={10}>Comprare</MenuItem>,
                                     <MenuItem value={20}>Vendere</MenuItem>,
@@ -36,18 +36,10 @@ const SearchBar = () => {
                                 ]}
                         />
                     </FormControl>
-                    <FormControl>
-                        <InputLabel id="comune-select-label" style={{marginLeft: '5%'}}>Comune</InputLabel>
+                    <FormControl className={classes.formControl}
+                                 variant={"outlined"}>
+                        <InputLabel id="comune-select-label">Comune</InputLabel>
                         <Select labelId="comune-select-label"
-                                MenuProps={{
-                                    PaperProps: {
-                                        style: {
-                                            width: 250,
-                                        },
-                                    },
-                                }}
-                                variant={"outlined"}
-                                style={{minWidth: 150}}
                                 children={[
                                     <MenuItem value={10}>Roma</MenuItem>,
                                     <MenuItem value={20}>Firenze</MenuItem>,
@@ -55,13 +47,15 @@ const SearchBar = () => {
                                 ]}
                         />
                     </FormControl>
-                    <FormControl>
-                        <TextField label={"Prezzo Min."} inputMode={"numeric"} variant={"outlined"}
-                                   style={{width: 150}}/>
+                    <FormControl className={classes.formControl}>
+                        <TextField label={"Prezzo Min."} inputMode={"numeric"}
+                                   variant={"outlined"}
+                                   style={{width: 120}}/>
                     </FormControl>
-                    <FormControl>
-                        <TextField label={"Prezzo Max."} inputMode={"numeric"} variant={"outlined"}
-                                   style={{width: 150}}/>
+                    <FormControl className={classes.formControl}>
+                        <TextField label={"Prezzo Max."} inputMode={"numeric"}
+                                   variant={"outlined"}
+                                   style={{width: 120}}/>
                     </FormControl>
                 </div>
                 <Button>Cerca</Button>
