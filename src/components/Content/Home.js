@@ -47,9 +47,8 @@ function MyAppBar() {
 }
 
 function MyFooter() {
-    const classes = useStyles()
     return (
-        <footer className={classes.footer}>
+        <footer style={{marginTop: '10%'}}>
             <Typography variant="h6" align="center" gutterBottom>
                 Footer
             </Typography>
