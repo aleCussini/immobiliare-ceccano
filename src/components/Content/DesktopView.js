@@ -16,52 +16,54 @@ const SearchBar = () => {
     return (
         <AppBar position="static" color={"white"} style={{marginBottom: '2%'}}>
             <Toolbar style={{display: "flex", justifyContent: "space-between"}}>
-                <FormControl>
-                    <InputLabel id="type-select-label" style={{marginLeft: '5%'}}>Per?</InputLabel>
-                    <Select labelId="type-select-label"
-                            MenuProps={{
-                                PaperProps: {
-                                    style: {
-                                        width: "250",
+                <div>
+                    <FormControl>
+                        <InputLabel id="type-select-label" style={{marginLeft: '5%'}}>Per?</InputLabel>
+                        <Select labelId="type-select-label"
+                                MenuProps={{
+                                    PaperProps: {
+                                        style: {
+                                            width: "250",
+                                        },
                                     },
-                                },
-                            }}
-                            variant={"outlined"}
-                            style={{minWidth: 150}}
-                            children={[
-                                <MenuItem value={10}>Comprare</MenuItem>,
-                                <MenuItem value={20}>Vendere</MenuItem>,
-                                <MenuItem value={30}>Affittare</MenuItem>
-                            ]}
-                    />
-                </FormControl>
-                <FormControl>
-                    <InputLabel id="comune-select-label" style={{marginLeft: '5%'}}>Comune</InputLabel>
-                    <Select labelId="comune-select-label"
-                            MenuProps={{
-                                PaperProps: {
-                                    style: {
-                                        width: 250,
+                                }}
+                                variant={"outlined"}
+                                style={{minWidth: 150}}
+                                children={[
+                                    <MenuItem value={10}>Comprare</MenuItem>,
+                                    <MenuItem value={20}>Vendere</MenuItem>,
+                                    <MenuItem value={30}>Affittare</MenuItem>
+                                ]}
+                        />
+                    </FormControl>
+                    <FormControl>
+                        <InputLabel id="comune-select-label" style={{marginLeft: '5%'}}>Comune</InputLabel>
+                        <Select labelId="comune-select-label"
+                                MenuProps={{
+                                    PaperProps: {
+                                        style: {
+                                            width: 250,
+                                        },
                                     },
-                                },
-                            }}
-                            variant={"outlined"}
-                            style={{minWidth: 150}}
-                            children={[
-                                <MenuItem value={10}>Roma</MenuItem>,
-                                <MenuItem value={20}>Firenze</MenuItem>,
-                                <MenuItem value={30}>Bari</MenuItem>
-                            ]}
-                    />
-                </FormControl>
-                <FormControl>
-                    <TextField label={"Prezzo Min."} inputMode={"numeric"} variant={"outlined"}
-                               style={{width: 150}}/>
-                </FormControl>
-                <FormControl>
-                    <TextField label={"Prezzo Max."} inputMode={"numeric"} variant={"outlined"}
-                               style={{width: 150}}/>
-                </FormControl>
+                                }}
+                                variant={"outlined"}
+                                style={{minWidth: 150}}
+                                children={[
+                                    <MenuItem value={10}>Roma</MenuItem>,
+                                    <MenuItem value={20}>Firenze</MenuItem>,
+                                    <MenuItem value={30}>Bari</MenuItem>
+                                ]}
+                        />
+                    </FormControl>
+                    <FormControl>
+                        <TextField label={"Prezzo Min."} inputMode={"numeric"} variant={"outlined"}
+                                   style={{width: 150}}/>
+                    </FormControl>
+                    <FormControl>
+                        <TextField label={"Prezzo Max."} inputMode={"numeric"} variant={"outlined"}
+                                   style={{width: 150}}/>
+                    </FormControl>
+                </div>
                 <Button>Cerca</Button>
             </Toolbar>
         </AppBar>
