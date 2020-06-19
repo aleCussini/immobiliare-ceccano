@@ -26,12 +26,13 @@ class Content extends Component {
     }
 
     componentDidMount() {
-        db.ref("/data").on("value", snapshotData => {
-            let allItems = []
+        let dataRef = db.ref("/data").orderByChild('update').limitToLast(4);
+        dataRef.on("value", snapshotData => {
+            let allItems = [];
             snapshotData.forEach(snapshot => {
                 allItems.push(snapshot.val())
             })
-            this.setState({items: allItems})
+            this.setState({items: allItems.reverse()})
         })
     }
 

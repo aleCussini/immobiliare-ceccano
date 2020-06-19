@@ -28,9 +28,13 @@ const useStyles = makeStyles((theme) => ({
 const SearchBar = () => {
     const [expanded, setExpanded] = useState(false)
     const [result, setResult] = useState([])
-
+    const [scope, setScope] = useState('')
+    const [city, setCity] = useState('')
+    const [minPrice, setMinPrice] = useState('')
+    const [maxPrice, setMaxPrice] = useState('')
     function search() {
-        db.ref("/data").on("value", snapshotData => {
+        let dataRef = db.ref("data")
+        dataRef.orderByChild('title').equalTo(city).on("value", snapshotData => {
             let allItems = []
             snapshotData.forEach(snapshot => {
                 allItems.push(snapshot.val())
@@ -48,7 +52,7 @@ const SearchBar = () => {
                     <FormControl className={classes.formControl}
                                  variant={"outlined"}>
                         <InputLabel id="type-select-label">Per?</InputLabel>
-                        <Select labelId="type-select-label"
+                        <Select labelId="type-select-label" onChange={e => setScope(e.target.value)}
                                 children={[
                                     <MenuItem value={10}>Comprare</MenuItem>,
                                     <MenuItem value={20}>Vendere</MenuItem>,
@@ -59,21 +63,21 @@ const SearchBar = () => {
                     <FormControl className={classes.formControl}
                                  variant={"outlined"}>
                         <InputLabel id="comune-select-label">Comune</InputLabel>
-                        <Select labelId="comune-select-label"
+                        <Select labelId="comune-select-label" onChange={e => setCity(e.target.value)}
                                 children={[
-                                    <MenuItem value={10}>Roma</MenuItem>,
-                                    <MenuItem value={20}>Firenze</MenuItem>,
-                                    <MenuItem value={30}>Bari</MenuItem>
+                                    <MenuItem value={'Roma'}>Roma</MenuItem>,
+                                    <MenuItem value={'Firenze'}>Firenze</MenuItem>,
+                                    <MenuItem value={'Bari'}>Bari</MenuItem>
                                 ]}
                         />
                     </FormControl>
                     <FormControl className={classes.formControl}>
-                        <TextField label={"Prezzo Min."} inputMode={"numeric"}
+                        <TextField label={"Prezzo Min."} inputMode={"numeric"} onChange={e => setMinPrice(e.target.value)}
                                    variant={"outlined"}
                                    style={{width: 120}}/>
                     </FormControl>
                     <FormControl className={classes.formControl}>
-                        <TextField label={"Prezzo Max."} inputMode={"numeric"}
+                        <TextField label={"Prezzo Max."} inputMode={"numeric"} onChange={e => setMaxPrice(e.target.value)}
                                    variant={"outlined"}
                                    style={{width: 120}}/>
                     </FormControl>

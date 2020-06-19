@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 import {makeStyles} from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
-import 'react-image-gallery/styles/css/image-gallery.css'
+//import 'react-image-gallery/styles/css/image-gallery.css'
 import Container from "@material-ui/core/Container"
 import CardMedia from "@material-ui/core/CardMedia"
 import Card from "@material-ui/core/Card"
