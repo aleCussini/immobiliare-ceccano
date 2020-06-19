@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import classNames from 'classnames'
 import Tile from './Tile'
 import {useWindowDimensions} from '../WindowDimensionsProvider'
@@ -12,6 +12,11 @@ import MenuItem from "@material-ui/core/MenuItem"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 import {makeStyles} from "@material-ui/core/styles"
+import Collapse from "@material-ui/core/Collapse"
+import db from "../Firebase/firebase-db"
+import GridList from "@material-ui/core/GridList"
+import GridListTile from "@material-ui/core/GridListTile"
+import Divider from "@material-ui/core/Divider"
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -19,7 +24,22 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 120,
     }
 }))
+
 const SearchBar = () => {
+    const [expanded, setExpanded] = useState(false)
+    const [result, setResult] = useState([])
+
+    function search() {
+        db.ref("/data").on("value", snapshotData => {
+            let allItems = []
+            snapshotData.forEach(snapshot => {
+                allItems.push(snapshot.val())
+            })
+            setResult(allItems)
+            setExpanded(!expanded)
+        })
+    }
+
     const classes = useStyles()
     return (
         <AppBar position="static" color={"white"} style={{marginBottom: '2%'}}>
@@ -58,8 +78,20 @@ const SearchBar = () => {
                                    style={{width: 120}}/>
                     </FormControl>
                 </div>
-                <Button>Cerca</Button>
+                <Button onClick={() => search()}>Cerca</Button>
             </Toolbar>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <Divider/>
+                <GridList cols={4} style={{margin: '2%'}}>
+                    {
+                        result.map(r =>
+                            <GridListTile key={r.title}>
+                                <Tile item={r}/>
+                            </GridListTile>)
+
+                    }
+                </GridList>
+            </Collapse>
         </AppBar>
     )
 }

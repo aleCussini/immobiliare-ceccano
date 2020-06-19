@@ -10,6 +10,7 @@ import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import {NavigateBefore, NavigateNext} from "@material-ui/icons"
 import ReactAliceCarousel from "react-alice-carousel"
+import IconButton from "@material-ui/core/IconButton"
 
 const images = [
     "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112655-15.jpg",
@@ -98,7 +99,7 @@ class MyCarousel extends Component {
                     justify="space-evenly"
                     alignItems="center">
                     <Grid item>
-                        <Button onClick={() => this.Carousel.slidePrev()}><NavigateBefore/></Button>
+                        <IconButton onClick={() => this.Carousel.slidePrev()}><NavigateBefore/></IconButton>
                     </Grid>
                     <Grid item xs={8}>
                         <ReactAliceCarousel
@@ -109,7 +110,7 @@ class MyCarousel extends Component {
                         />
                     </Grid>
                     <Grid item>
-                        <Button onClick={() => this.Carousel.slideNext()}><NavigateNext/></Button>
+                        <IconButton onClick={() => this.Carousel.slideNext()}><NavigateNext/></IconButton>
                     </Grid>
                 </Grid>
                 <nav>{images.map(this.thumbItem)}</nav>
