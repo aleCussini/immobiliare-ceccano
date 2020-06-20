@@ -25,25 +25,34 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const SearchBar = () => {
-    const [expanded, setExpanded] = useState(false)
+const SearchBar = ({items}) => {
+    const [expanded, setExpanded] = useState(true)
     const [result, setResult] = useState([])
     const [scope, setScope] = useState('')
     const [city, setCity] = useState('')
     const [minPrice, setMinPrice] = useState('')
     const [maxPrice, setMaxPrice] = useState('')
     function search() {
-        let dataRef = db.ref("data")
-        dataRef.orderByChild('title').equalTo(city).on("value", snapshotData => {
-            let allItems = []
-            snapshotData.forEach(snapshot => {
-                allItems.push(snapshot.val())
-            })
-            setResult(allItems)
-            setExpanded(!expanded)
-        })
+        if (city){
+            items = items.filter(function(item){
+                return item.title == city // cambiare assolutamente title con city nell'ogetto firebase
+            });
+        }
+        if (scope)
+            items = items.filter(function(item){
+                return item.scope == scope 
+        });
+        if (minPrice)
+            items = items.filter(function(item){
+                return item.price > minPrice 
+        });
+        if (minPrice)
+            items = items.filter(function(item){
+                return item.price < maxPrice 
+        });
+        setResult(items)
+        setExpanded(!expanded)
     }
-
     const classes = useStyles()
     return (
         <AppBar position="static" color={"white"} style={{marginBottom: '2%'}}>
@@ -54,9 +63,8 @@ const SearchBar = () => {
                         <InputLabel id="type-select-label">Per?</InputLabel>
                         <Select labelId="type-select-label" onChange={e => setScope(e.target.value)}
                                 children={[
-                                    <MenuItem value={10}>Comprare</MenuItem>,
-                                    <MenuItem value={20}>Vendere</MenuItem>,
-                                    <MenuItem value={30}>Affittare</MenuItem>
+                                    <MenuItem value={'sale'}>Comprare</MenuItem>,
+                                    <MenuItem value={'rent'}>Affittare</MenuItem>
                                 ]}
                         />
                     </FormControl>
@@ -101,16 +109,17 @@ const SearchBar = () => {
 }
 
 const DesktopView = ({items}) => {
+    let sortedItems = items.sort((a,b) => (a.update < b.update) ? 1 : ((b.update < a.update) ? -1 : 0)) //order by update desc
     const {width} = useWindowDimensions()
     return (
         <Container maxWidth={"lg"}>
-            <SearchBar/>
+            <SearchBar items={items}/>
             <div
                 className={classNames('tile is-ancestor', {
                     'is-vertical': width > 414 && width < 1088
                 })}
             >
-                {items.map((item) => (
+                {sortedItems.map((item) => (
                     <Tile key={item.title} item={item}/>
                 ))}
             </div>
