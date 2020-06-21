@@ -14,50 +14,64 @@ import Button from "@material-ui/core/Button"
 import {makeStyles} from "@material-ui/core/styles"
 import Collapse from "@material-ui/core/Collapse"
 import Divider from "@material-ui/core/Divider"
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import Avatar from '@material-ui/core/Avatar';
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemAvatar from '@material-ui/core/ListItemAvatar'
+import ListItemText from '@material-ui/core/ListItemText'
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
+import Avatar from '@material-ui/core/Avatar'
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt'
 import {Link} from "react-router-dom"
+import IconButton from "@material-ui/core/IconButton"
+import {ExpandMore} from "@material-ui/icons"
+import clsx from "clsx"
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        })
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
     }
 }))
 
 const SearchBar = ({items}) => {
-    const [expanded, setExpanded] = useState(true)
+    const [expanded, setExpanded] = useState(false)
     const [result, setResult] = useState([])
     const [scope, setScope] = useState('')
     const [city, setCity] = useState('')
     const [minPrice, setMinPrice] = useState('')
     const [maxPrice, setMaxPrice] = useState('')
+
     function search() {
-        if (city){
-            items = items.filter(function(item){
-                return item.title == city // cambiare assolutamente title con city nell'ogetto firebase
-            });
+        if (city) {
+            items = items.filter(function (item) {
+                return item.title === city // cambiare assolutamente title con city nell'ogetto firebase
+            })
         }
         if (scope)
-            items = items.filter(function(item){
-                return item.scope == scope 
-        });
+            items = items.filter(function (item) {
+                return item.scope === scope
+            })
         if (minPrice)
-            items = items.filter(function(item){
-                return item.price > minPrice 
-        });
+            items = items.filter(function (item) {
+                return item.price > minPrice
+            })
         if (minPrice)
-            items = items.filter(function(item){
-                return item.price < maxPrice 
-        });
+            items = items.filter(function (item) {
+                return item.price < maxPrice
+            })
         setResult(items)
         setExpanded(true)
     }
+
     const classes = useStyles()
     return (
         <AppBar position="static" color={"white"} style={{marginBottom: '2%'}}>
@@ -85,12 +99,14 @@ const SearchBar = ({items}) => {
                         />
                     </FormControl>
                     <FormControl className={classes.formControl}>
-                        <TextField label={"Prezzo Min."} inputMode={"numeric"} onChange={e => setMinPrice(e.target.value)}
+                        <TextField label={"Prezzo Min."} inputMode={"numeric"}
+                                   onChange={e => setMinPrice(e.target.value)}
                                    variant={"outlined"}
                                    style={{width: 120}}/>
                     </FormControl>
                     <FormControl className={classes.formControl}>
-                        <TextField label={"Prezzo Max."} inputMode={"numeric"} onChange={e => setMaxPrice(e.target.value)}
+                        <TextField label={"Prezzo Max."} inputMode={"numeric"}
+                                   onChange={e => setMaxPrice(e.target.value)}
                                    variant={"outlined"}
                                    style={{width: 120}}/>
                     </FormControl>
@@ -99,23 +115,30 @@ const SearchBar = ({items}) => {
             </Toolbar>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <Divider/>
+                <IconButton
+                    onClick={() => setExpanded(false)}
+                    className={clsx(classes.expand, {
+                        [classes.expandOpen]: expanded,
+                    })}>
+                    <ExpandMore/>
+                </IconButton>
                 <List>
-                    { result.map(r =>
+                    {result.map(r =>
                         <ListItem component={Link}
-                        to={{
-                            pathname: '/details',
-                            state: {item: r}
-                        }}>
-                        <ListItemAvatar>
-                            <Avatar src={r.image} />
-                        </ListItemAvatar>
-                        
-                        <ListItemText
-                            primary={r.title}
-                            secondary={r.scope=='sale' ? r.price + ' €' : r.price + ' €/mese'}
-                        />
-                        {r.scope=='sale'? <AttachMoneyIcon /> : <PeopleAltIcon />}
-                        </ListItem>       
+                                  to={{
+                                      pathname: '/details',
+                                      state: {item: r}
+                                  }}>
+                            <ListItemAvatar>
+                                <Avatar src={r.image}/>
+                            </ListItemAvatar>
+
+                            <ListItemText
+                                primary={r.title}
+                                secondary={r.scope === 'sale' ? r.price + ' €' : r.price + ' €/mese'}
+                            />
+                            {r.scope === 'sale' ? <AttachMoneyIcon/> : <PeopleAltIcon/>}
+                        </ListItem>
                     )}
                 </List>
             </Collapse>
@@ -124,7 +147,7 @@ const SearchBar = ({items}) => {
 }
 
 const DesktopView = ({items}) => {
-    let sortedItems = items.sort((a,b) => (a.update < b.update) ? 1 : ((b.update < a.update) ? -1 : 0)) //order by update desc
+    let sortedItems = items.sort((a, b) => (a.update < b.update) ? 1 : ((b.update < a.update) ? -1 : 0)) //order by update desc
     const {width} = useWindowDimensions()
     return (
         <Container maxWidth={"lg"}>
