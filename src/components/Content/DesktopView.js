@@ -13,10 +13,15 @@ import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 import {makeStyles} from "@material-ui/core/styles"
 import Collapse from "@material-ui/core/Collapse"
-import db from "../Firebase/firebase-db"
-import GridList from "@material-ui/core/GridList"
-import GridListTile from "@material-ui/core/GridListTile"
 import Divider from "@material-ui/core/Divider"
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import Avatar from '@material-ui/core/Avatar';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import {Link} from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -51,7 +56,7 @@ const SearchBar = ({items}) => {
                 return item.price < maxPrice 
         });
         setResult(items)
-        setExpanded(!expanded)
+        setExpanded(true)
     }
     const classes = useStyles()
     return (
@@ -94,15 +99,25 @@ const SearchBar = ({items}) => {
             </Toolbar>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <Divider/>
-                <GridList cols={4} style={{margin: '2%'}}>
-                    {
-                        result.map(r =>
-                            <GridListTile key={r.title}>
-                                <Tile item={r}/>
-                            </GridListTile>)
-
-                    }
-                </GridList>
+                <List>
+                    { result.map(r =>
+                        <ListItem component={Link}
+                        to={{
+                            pathname: '/details',
+                            state: {item: r}
+                        }}>
+                        <ListItemAvatar>
+                            <Avatar src={r.image} />
+                        </ListItemAvatar>
+                        
+                        <ListItemText
+                            primary={r.title}
+                            secondary={r.scope=='sale' ? r.price + ' €' : r.price + ' €/mese'}
+                        />
+                        {r.scope=='sale'? <AttachMoneyIcon /> : <PeopleAltIcon />}
+                        </ListItem>       
+                    )}
+                </List>
             </Collapse>
         </AppBar>
     )
