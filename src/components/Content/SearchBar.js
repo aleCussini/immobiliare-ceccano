@@ -13,14 +13,11 @@ import Divider from "@material-ui/core/Divider"
 import IconButton from "@material-ui/core/IconButton"
 import clsx from "clsx"
 import {ExpandMore} from "@material-ui/icons"
-import List from "@material-ui/core/List"
-import ListItem from "@material-ui/core/ListItem"
-import {Link} from "react-router-dom"
-import ListItemAvatar from "@material-ui/core/ListItemAvatar"
-import Avatar from "@material-ui/core/Avatar"
-import ListItemText from "@material-ui/core/ListItemText"
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney"
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt"
+import GridList from "@material-ui/core/GridList"
+import GridListTile from "@material-ui/core/GridListTile"
+import GridListTileBar from "@material-ui/core/GridListTileBar"
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -29,13 +26,20 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 300,
     },
     expand: {
+        marginTop: '2%',
+        marginLeft: '2%',
         transform: 'rotate(0deg)',
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
         })
     },
     expandOpen: {
+        marginTop: '2%',
+        marginLeft: '2%',
         transform: 'rotate(180deg)',
+    },
+    gridTileIcon: {
+        color: theme.palette.primary.contrastText
     }
 }))
 
@@ -121,25 +125,22 @@ const SearchBar = ({items}) => {
                     })}>
                     <ExpandMore/>
                 </IconButton>
-                <List>
+                <GridList cols={4} spacing={8} style={{margin: '2%'}}>
                     {result.map(r =>
-                        <ListItem component={Link}
-                                  to={{
-                                      pathname: '/details',
-                                      state: {item: r}
-                                  }}>
-                            <ListItemAvatar>
-                                <Avatar src={r.image} variant={"rounded"}/>
-                            </ListItemAvatar>
-
-                            <ListItemText
-                                primary={r.title}
-                                secondary={r.scope === 'sale' ? r.price + ' €' : r.price + ' €/mese'}
+                        <GridListTile>
+                            <img src={r.image} alt={r.title}/>
+                            <GridListTileBar
+                                title={r.title}
+                                subtitle={r.scope === 'sale' ? r.price + ' €' : r.price + ' €/mese'}
+                                actionIcon={
+                                    <IconButton className={classes.gridTileIcon}>
+                                        {r.scope === 'sale' ? <AttachMoneyIcon/> : <PeopleAltIcon/>}
+                                    </IconButton>
+                                }
                             />
-                            {r.scope === 'sale' ? <AttachMoneyIcon/> : <PeopleAltIcon/>}
-                        </ListItem>
+                        </GridListTile>
                     )}
-                </List>
+                </GridList>
             </Collapse>
         </AppBar>
         // </Container>
