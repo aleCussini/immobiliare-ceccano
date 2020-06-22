@@ -11,14 +11,13 @@ import Button from "@material-ui/core/Button"
 import Collapse from "@material-ui/core/Collapse"
 import Divider from "@material-ui/core/Divider"
 import IconButton from "@material-ui/core/IconButton"
-import clsx from "clsx"
 import {Link} from "react-router-dom"
-import {ExpandMore} from "@material-ui/icons"
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney"
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt"
 import GridList from "@material-ui/core/GridList"
 import GridListTile from "@material-ui/core/GridListTile"
 import GridListTileBar from "@material-ui/core/GridListTileBar"
+import {ExpandLess} from "@material-ui/icons"
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -84,6 +83,7 @@ const SearchBar = ({items}) => {
                                  variant={"outlined"}>
                         <InputLabel id="type-select-label">Per?</InputLabel>
                         <Select labelId="type-select-label" onChange={e => setScope(e.target.value)}
+                                label={"Per?"}
                                 children={[
                                     <MenuItem value={'sale'}>Comprare</MenuItem>,
                                     <MenuItem value={'rent'}>Affittare</MenuItem>
@@ -94,6 +94,7 @@ const SearchBar = ({items}) => {
                                  variant={"outlined"}>
                         <InputLabel id="comune-select-label">Comune</InputLabel>
                         <Select labelId="comune-select-label" onChange={e => setCity(e.target.value)}
+                                label={"Comune"}
                                 children={[
                                     <MenuItem value={'Roma'}>Roma</MenuItem>,
                                     <MenuItem value={'Firenze'}>Firenze</MenuItem>,
@@ -114,17 +115,16 @@ const SearchBar = ({items}) => {
                                    style={{width: 120}}/>
                     </FormControl>
                 </div>
-                <Button onClick={() => search()}>Cerca</Button>
+                <div style={{display: 'flex'}}>
+                    <Button onClick={() => search()}>{'cerca'}</Button>
+                    {expanded ?
+                        <IconButton onClick={() => setExpanded(false)}>
+                            <ExpandLess/>
+                        </IconButton> : null}
+                </div>
             </Toolbar>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <Divider/>
-                <IconButton
-                    onClick={() => setExpanded(false)}
-                    className={clsx(classes.expand, {
-                        [classes.expandOpen]: expanded,
-                    })}>
-                    <ExpandMore/>
-                </IconButton>
                 <GridList cols={4} spacing={8} style={{margin: '2%'}}>
                     {result.map(r =>
                         <GridListTile
