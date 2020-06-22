@@ -7,6 +7,7 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney"
 import HandshakeIcon from "mdi-material-ui/Handshake"
 import React from "react"
 import {makeStyles} from "@material-ui/core/styles"
+import {Link} from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
     heroButtons: {
@@ -30,19 +31,22 @@ function MyBanner() {
                 <div className={classes.heroButtons}>
                     <Grid container spacing={2} justify="center">
                         <Grid item>
-                            <Button variant="contained" color="textSecondary">
+                            <Link to="/buy">
+                                <Button variant="contained" color="textSecondary">
                                 <HomeIcon/>&nbsp;Comprare
-                            </Button>
+                            </Button></Link>
                         </Grid>
                         <Grid item>
+                        <Link to="/sale">
                             <Button variant="contained" color="secondary">
                                 <AttachMoneyIcon/>&nbsp;Vendere
-                            </Button>
+                            </Button></Link>
                         </Grid>
                         <Grid item>
+                        <Link to="/rent">
                             <Button variant="contained" color="primary">
                                 <HandshakeIcon/>&nbsp;Locare
-                            </Button>
+                            </Button></Link>
                         </Grid>
                     </Grid>
                 </div>

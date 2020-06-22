@@ -16,7 +16,7 @@ const DesktopView = ({items}) => {
                     'is-vertical': width > 414 && width < 1088
                 })}
             >
-                {sortedItems.map((item) => (
+                {sortedItems.slice(0,4).map((item) => (
                     <Tile key={item.title} item={item}/>
                 ))}
             </div>
