@@ -12,6 +12,7 @@ import Collapse from "@material-ui/core/Collapse"
 import Divider from "@material-ui/core/Divider"
 import IconButton from "@material-ui/core/IconButton"
 import clsx from "clsx"
+import {Link} from "react-router-dom"
 import {ExpandMore} from "@material-ui/icons"
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney"
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt"
@@ -76,7 +77,6 @@ const SearchBar = ({items}) => {
 
     const classes = useStyles()
     return (
-        // <Container maxWidth={"md"}>
         <AppBar position="static" color={"white"} style={{marginBottom: '5%'}}>
             <Toolbar style={{display: "flex", justifyContent: "space-between"}}>
                 <div>
@@ -127,7 +127,12 @@ const SearchBar = ({items}) => {
                 </IconButton>
                 <GridList cols={4} spacing={8} style={{margin: '2%'}}>
                     {result.map(r =>
-                        <GridListTile>
+                        <GridListTile
+                            component={Link}
+                            to={{
+                                pathname: '/details',
+                                state: {item: r}
+                            }}>
                             <img src={r.image} alt={r.title}/>
                             <GridListTileBar
                                 title={r.title}
@@ -143,7 +148,6 @@ const SearchBar = ({items}) => {
                 </GridList>
             </Collapse>
         </AppBar>
-        // </Container>
     )
 }
 
