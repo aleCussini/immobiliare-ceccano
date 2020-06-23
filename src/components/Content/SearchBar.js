@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const SearchBar = ({items}) => {
+const SearchBar = ({items, searchColumn}) => {
     const [expanded, setExpanded] = useState(false)
     const [result, setResult] = useState([])
     const [scope, setScope] = useState('')
@@ -125,7 +125,7 @@ const SearchBar = ({items}) => {
             </Toolbar>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <Divider/>
-                <GridList cols={4} spacing={8} style={{margin: '2%'}}>
+                <GridList cols={searchColumn} spacing={8} style={{margin: '2%'}}>
                     {result.map(r =>
                         <GridListTile
                             component={Link}

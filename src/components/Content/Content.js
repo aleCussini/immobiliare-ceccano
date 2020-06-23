@@ -1,6 +1,5 @@
 import ResponsiveLayout from "../ResponsiveLayout"
-import DesktopView from "./DesktopView"
-import MobileView from "./MobileView"
+import ContentView from "./ContentView"
 import React, {Component} from "react"
 import {withStyles} from "@material-ui/core"
 import db from "../Firebase/firebase-db"
@@ -28,7 +27,7 @@ class Content extends Component {
     componentDidMount() {
         let dataRef = db.ref("/data")
         dataRef.on("value", snapshotData => {
-            let allItems = [];
+            let allItems = []
             snapshotData.forEach(snapshot => {
                 allItems.push(snapshot.val())
             })
@@ -44,10 +43,10 @@ class Content extends Component {
                 <ResponsiveLayout
                     breakPoint={767}
                     renderDesktop={() => (
-                        <DesktopView items={this.state.items}/>
+                        <ContentView items={this.state.items}/>
                     )}
                     renderMobile={() => (
-                        <MobileView items={this.state.items}/>
+                        <ContentView items={this.state.items} searchColumn={2} gridColumn={1}/>
                     )}
                 />
             </div>
