@@ -8,7 +8,7 @@ import Card from "@material-ui/core/Card"
 import "react-alice-carousel/lib/alice-carousel.css"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
-import {NavigateBefore, NavigateNext} from "@material-ui/icons"
+import {Bathtub, Hotel, NavigateBefore, NavigateNext, SquareFoot} from "@material-ui/icons"
 import ReactAliceCarousel from "react-alice-carousel"
 import IconButton from "@material-ui/core/IconButton"
 import Divider from "@material-ui/core/Divider"
@@ -116,33 +116,36 @@ function TileDetails(props) {
             <Container maxWidth={"md"} style={{marginTop: '3%', marginBottom: '10%'}}>
                 <MyCarousel/>
                 <Box justifyContent={"center"} style={{display: "flex", marginTop: "2%"}}>
-                    <Card square={true} variant={"outlined"} style={{padding: "2%", marginRight: "1%"}}>
+                    <Card square={true} variant={"outlined"}
+                          style={{padding: "2%", marginRight: "1%", minWidth: "max-content"}}>
                         {/*aggiungere city in oggetto firebase!!!*/}
                         <Typography align={"center"}
                                     color={"secondary"}
-                                    variant="h6"
-                                    style={{marginTop: '5%'}}>{item.title}</Typography>
+                                    variant="h6">{item.title}</Typography>
                     </Card>
-                    <Card square={true} variant={"outlined"} style={{padding: "2%"}}>
+                    <Card square={true} variant={"outlined"}
+                          style={{padding: "2%", minWidth: "max-content", display: "flex"}}>
+                        <Bathtub style={{marginRight: 10}}/>&nbsp;
+                        <Typography align={"center"}
+                                    variant="h6">{"3 Bagni"}</Typography>
+                    </Card>
+                    <Card square={true} variant={"outlined"}
+                          style={{padding: "2%", minWidth: "max-content", display: "flex"}}>
+                        <SquareFoot style={{marginRight: 10}}/>&nbsp;
+                        <Typography align={"center"}
+                                    variant="h6">{"90 MQ"}</Typography>
+                    </Card>
+                    <Card square={true} variant={"outlined"}
+                          style={{padding: "2%", minWidth: "max-content", display: "flex"}}>
+                        <Hotel style={{marginRight: 10}}/>&nbsp;
+                        <Typography align={"center"}
+                                    variant="h6">{"9 Camere"}</Typography>
+                    </Card>
+                    <Card square={true} variant={"outlined"}
+                          style={{padding: "2%", marginLeft: "1%", minWidth: "max-content"}}>
                         <Typography align={"center"}
                                     variant="h6"
-                                    style={{marginTop: '5%'}}>{"3 Bagni"}</Typography>
-                    </Card>
-                    <Card square={true} variant={"outlined"} style={{padding: "2%"}}>
-                        <Typography align={"center"}
-                                    variant="h6"
-                                    style={{marginTop: '5%'}}>{"90 MQ"}</Typography>
-                    </Card>
-                    <Card square={true} variant={"outlined"} style={{padding: "2%"}}>
-                        <Typography align={"center"}
-                                    variant="h6"
-                                    style={{marginTop: '5%'}}>{"9 camere"}</Typography>
-                    </Card>
-                    <Card square={true} variant={"outlined"} style={{padding: "2%", marginLeft: "1%"}}>
-                        <Typography align={"center"}
-                                    variant="h6"
-                                    color={"primary"}
-                                    style={{marginTop: '5%'}}>{item.scope === 'sale' ? item.price + ' €' : item.price + ' €/mese'}</Typography>
+                                    color={"primary"}>{item.scope === 'sale' ? item.price + ' €' : item.price + ' €/mese'}</Typography>
                     </Card>
                 </Box>
                 <div>
