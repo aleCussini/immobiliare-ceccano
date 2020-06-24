@@ -11,6 +11,8 @@ import Button from "@material-ui/core/Button"
 import {NavigateBefore, NavigateNext} from "@material-ui/icons"
 import ReactAliceCarousel from "react-alice-carousel"
 import IconButton from "@material-ui/core/IconButton"
+import Divider from "@material-ui/core/Divider"
+import {Box} from "@material-ui/core"
 
 const images = [
     "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112655-15.jpg",
@@ -45,36 +47,19 @@ const images = [
 ]
 
 const useStyles = makeStyles((theme) => ({
-        itemTitle: {
-            marginTop: theme.spacing(3),
-            marginBottom: theme.spacing(3),
-        },
-        card: {
-            maxWidth: "max-content",
-            margin: "auto"
-        },
-        carousel: {
-            maxWidth: "max-content",
-            margin: "auto"
-        }
-    })
-)
-
-function TileDetails(props) {
-    const {item} = props.location.state
-    const classes = useStyles()
-
-    return (
-        <div>
-            <Typography align={"center"}
-                        variant="h5"
-                        className={classes.itemTitle}>{"Dettagli " + item.title}</Typography>
-            <Container maxWidth={"md"} style={{marginTop: '5%', marginBottom: '10%'}}>
-                <MyCarousel/>
-            </Container>
-        </div>
-    )
-}
+    itemTitle: {
+        marginTop: theme.spacing(3),
+        marginBottom: theme.spacing(3),
+    },
+    card: {
+        maxWidth: "max-content",
+        margin: "auto"
+    },
+    carousel: {
+        maxWidth: "max-content",
+        margin: "auto"
+    }
+}))
 
 class MyCarousel extends Component {
     state = {
@@ -113,10 +98,73 @@ class MyCarousel extends Component {
                         <IconButton onClick={() => this.Carousel.slideNext()}><NavigateNext/></IconButton>
                     </Grid>
                 </Grid>
-                <nav>{images.map(this.thumbItem)}</nav>
+                {/*<nav>{images.map(this.thumbItem)}</nav>*/}
             </div>
         )
     }
+}
+
+function TileDetails(props) {
+    const {item} = props.location.state
+    const classes = useStyles()
+
+    return (
+        <div>
+            <Typography align={"center"}
+                        variant="h5"
+                        className={classes.itemTitle}>{"Dettagli " + item.title}</Typography>
+            <Container maxWidth={"md"} style={{marginTop: '3%', marginBottom: '10%'}}>
+                <MyCarousel/>
+                <Box justifyContent={"center"} style={{display: "flex", marginTop: "2%"}}>
+                    <Card square={true} variant={"outlined"} style={{padding: "2%", marginRight: "1%"}}>
+                        {/*aggiungere city in oggetto firebase!!!*/}
+                        <Typography align={"center"}
+                                    color={"secondary"}
+                                    variant="h6"
+                                    style={{marginTop: '5%'}}>{item.title}</Typography>
+                    </Card>
+                    <Card square={true} variant={"outlined"} style={{padding: "2%"}}>
+                        <Typography align={"center"}
+                                    variant="h6"
+                                    style={{marginTop: '5%'}}>{"3 Bagni"}</Typography>
+                    </Card>
+                    <Card square={true} variant={"outlined"} style={{padding: "2%"}}>
+                        <Typography align={"center"}
+                                    variant="h6"
+                                    style={{marginTop: '5%'}}>{"90 MQ"}</Typography>
+                    </Card>
+                    <Card square={true} variant={"outlined"} style={{padding: "2%"}}>
+                        <Typography align={"center"}
+                                    variant="h6"
+                                    style={{marginTop: '5%'}}>{"9 camere"}</Typography>
+                    </Card>
+                    <Card square={true} variant={"outlined"} style={{padding: "2%", marginLeft: "1%"}}>
+                        <Typography align={"center"}
+                                    variant="h6"
+                                    color={"primary"}
+                                    style={{marginTop: '5%'}}>{item.scope === 'sale' ? item.price + ' €' : item.price + ' €/mese'}</Typography>
+                    </Card>
+                </Box>
+                <div>
+                    <Divider variant={"middle"} style={{marginTop: "5%"}}/>
+                    <Typography align={"center"}
+                                variant="h4"
+                                style={{marginTop: '5%'}}>{"Descrizione immobile"}</Typography>
+                    <Container style={{marginTop: '5%', marginBottom: '10%'}}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur.
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+                        id est laborum.
+                    </Container>
+                    <Divider variant={"middle"} style={{marginTop: "5%"}}/>
+                </div>
+            </Container>
+        </div>
+    )
 }
 
 export default TileDetails
