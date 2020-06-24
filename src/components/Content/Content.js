@@ -12,9 +12,7 @@ const styles = theme => ({
         backgroundPosition: "center",
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing(8, 0, 6),
-    },
-    searchForm: {
-        marginLeft: theme.spacing(6),
+        marginBottom: -30
     }
 })
 
@@ -46,7 +44,7 @@ class Content extends Component {
                         <ContentView items={this.state.items}/>
                     )}
                     renderMobile={() => (
-                        <ContentView items={this.state.items} searchColumn={2} gridColumn={1}/>
+                        <ContentView items={this.state.items} searchColumn={1} gridColumn={1}/>
                     )}
                 />
             </div>

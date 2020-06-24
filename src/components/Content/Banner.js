@@ -11,7 +11,7 @@ import {Link} from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
     heroButtons: {
-        marginTop: theme.spacing(4),
+        marginBottom: theme.spacing(2),
     },
     headerTitle: {
         color: '#e0e4ff'
@@ -23,10 +23,10 @@ function MyBanner() {
     return (
         <div>
             <Container maxWidth={"sm"}>
-                <Typography component="h1" variant="h2" align = 'center' className={classes.headerTitle} gutterBottom>
+                <Typography component="h1" variant="h2" align='center' className={classes.headerTitle} gutterBottom>
                     Mantua Immobiliare
                 </Typography>
-                <Typography variant="h5" align="center" color="textSecondary" paragraph>
+                <Typography variant="h5" align="center" className={classes.headerTitle} paragraph>
                     I will write some great, great text on your website’s Southern border, and I will make Google
                     pay for that text.
                     Mark my words. Lorem Ipsum is a choke artist. It chokes!
@@ -36,20 +36,20 @@ function MyBanner() {
                         <Grid item>
                             <Link to="/buy">
                                 <Button variant="contained" color="primary">
-                                <HomeIcon/>&nbsp;Comprare
-                            </Button></Link>
+                                    <HomeIcon/>&nbsp;Comprare
+                                </Button></Link>
                         </Grid>
                         <Grid item>
-                        <Link to="/sale">
-                            <Button variant="contained" color="primary">
-                                <AttachMoneyIcon/>&nbsp;Vendere
-                            </Button></Link>
+                            <Link to="/sale">
+                                <Button variant="contained" color="primary">
+                                    <AttachMoneyIcon/>&nbsp;Vendere
+                                </Button></Link>
                         </Grid>
                         <Grid item>
-                        <Link to="/rent">
-                            <Button variant="contained" color="primary">
-                                <HandshakeIcon/>&nbsp;Locare
-                            </Button></Link>
+                            <Link to="/rent">
+                                <Button variant="contained" color="primary">
+                                    <HandshakeIcon/>&nbsp;Locare
+                                </Button></Link>
                         </Grid>
                     </Grid>
                 </div>
