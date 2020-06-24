@@ -8,19 +8,20 @@ import {Link} from "react-router-dom"
 
 function Tile({item}) {
     return (
-        <div className='tile is-parent'>
+        <Card variant={"outlined"} style={{height: "max-content"}}>
             <CardActionArea component={Link}
                             to={{
                                 pathname: '/details',
                                 state: {item: item}
                             }}>
-                <Card variant={"outlined"}>
-                    <CardHeader title={item.title}/>
-                    <CardMedia component={"img"} image={item.image}/>
-                    <CardContent>{item.content}</CardContent>
-                </Card>
+                <CardHeader
+                    title={item.title}
+                    subheader={item.scope === 'sale' ? item.price + ' €' : item.price + ' €/mese'}
+                />
+                <CardMedia component={"img"} image={item.image}/>
+                <CardContent>{item.content}</CardContent>
             </CardActionArea>
-        </div>
+        </Card>
     )
 }
 
