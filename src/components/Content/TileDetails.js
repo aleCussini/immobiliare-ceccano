@@ -117,32 +117,32 @@ function TileDetails(props) {
                 <MyCarousel/>
                 <Box justifyContent={"center"} style={{display: "flex", marginTop: "2%"}}>
                     <Card square={true} variant={"outlined"}
-                          style={{padding: "2%", marginRight: "1%", minWidth: "max-content"}}>
+                          style={{padding: "2%", marginRight: "1%", minWidth: "max-content", maxHeight: "max-content"}}>
                         {/*aggiungere city in oggetto firebase!!!*/}
                         <Typography align={"center"}
                                     color={"secondary"}
                                     variant="h6">{item.title}</Typography>
                     </Card>
                     <Card square={true} variant={"outlined"}
-                          style={{padding: "2%", minWidth: "max-content", display: "flex"}}>
+                          style={{padding: "2%", minWidth: "max-content", display: "flex", maxHeight: "max-content"}}>
                         <Bathtub style={{marginRight: 10}}/>&nbsp;
                         <Typography align={"center"}
                                     variant="h6">{"3 Bagni"}</Typography>
                     </Card>
                     <Card square={true} variant={"outlined"}
-                          style={{padding: "2%", minWidth: "max-content", display: "flex"}}>
+                          style={{padding: "2%", minWidth: "max-content", display: "flex", maxHeight: "max-content"}}>
                         <SquareFoot style={{marginRight: 10}}/>&nbsp;
                         <Typography align={"center"}
                                     variant="h6">{"90 MQ"}</Typography>
                     </Card>
                     <Card square={true} variant={"outlined"}
-                          style={{padding: "2%", minWidth: "max-content", display: "flex"}}>
+                          style={{padding: "2%", minWidth: "max-content", display: "flex", maxHeight: "max-content"}}>
                         <Hotel style={{marginRight: 10}}/>&nbsp;
                         <Typography align={"center"}
                                     variant="h6">{"9 Camere"}</Typography>
                     </Card>
                     <Card square={true} variant={"outlined"}
-                          style={{padding: "2%", marginLeft: "1%", minWidth: "max-content"}}>
+                          style={{padding: "2%", marginLeft: "1%", minWidth: "max-content", maxHeight: "max-content"}}>
                         <Typography align={"center"}
                                     variant="h6"
                                     color={"primary"}>{item.scope === 'sale' ? item.price + ' €' : item.price + ' €/mese'}</Typography>

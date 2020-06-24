@@ -6,10 +6,12 @@ import {makeStyles, useTheme} from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
 import Routes from "../Routes"
 import IconButton from "@material-ui/core/IconButton"
-import {ChevronLeft, ChevronRight, Menu} from "@material-ui/icons"
+import {ChevronLeft, ChevronRight, Facebook, Instagram, Menu} from "@material-ui/icons"
+import {useWindowDimensions} from "../WindowDimensionsProvider"
 import Drawer from "@material-ui/core/Drawer"
 import Divider from "@material-ui/core/Divider"
-import {useWindowDimensions} from "../WindowDimensionsProvider"
+import {Whatsapp} from "mdi-material-ui"
+import Box from "@material-ui/core/Box"
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -53,8 +55,19 @@ function MyAppBar({isMobile}) {
                 <Link variant="h6" color="textPrimary" href={"/"} className={classes.toolbarTitle}>
                     Agenzia Demo
                 </Link>
+                <Box justifyContent={"center"} style={{marginLeft: "10%", flexGrow: 1}}>
+                    <IconButton>
+                        <Facebook/>
+                    </IconButton>
+                    <IconButton>
+                        <Whatsapp/>
+                    </IconButton>
+                    <IconButton>
+                        <Instagram/>
+                    </IconButton>
+                </Box>
                 {!isMobile ?
-                    <nav>
+                    <div>
                         <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
                             Blog
                         </Link>
@@ -64,7 +77,8 @@ function MyAppBar({isMobile}) {
                         <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
                             Chi Siamo?
                         </Link>
-                    </nav> :
+                    </div>
+                    :
                     <div>
                         <IconButton
                             color="inherit"
