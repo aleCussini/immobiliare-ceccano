@@ -12,7 +12,10 @@ import {Link} from "react-router-dom"
 const useStyles = makeStyles((theme) => ({
     heroButtons: {
         marginTop: theme.spacing(4),
-    }
+    },
+    headerTitle: {
+        color: '#e0e4ff'
+    },
 }))
 
 function MyBanner() {
@@ -20,8 +23,8 @@ function MyBanner() {
     return (
         <div>
             <Container maxWidth={"sm"}>
-                <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                    Header layout
+                <Typography component="h1" variant="h2" align = 'center' className={classes.headerTitle} gutterBottom>
+                    Mantua Immobiliare
                 </Typography>
                 <Typography variant="h5" align="center" color="textSecondary" paragraph>
                     I will write some great, great text on your website’s Southern border, and I will make Google
@@ -32,13 +35,13 @@ function MyBanner() {
                     <Grid container spacing={2} justify="center">
                         <Grid item>
                             <Link to="/buy">
-                                <Button variant="contained" color="textSecondary">
+                                <Button variant="contained" color="primary">
                                 <HomeIcon/>&nbsp;Comprare
                             </Button></Link>
                         </Grid>
                         <Grid item>
                         <Link to="/sale">
-                            <Button variant="contained" color="secondary">
+                            <Button variant="contained" color="primary">
                                 <AttachMoneyIcon/>&nbsp;Vendere
                             </Button></Link>
                         </Grid>
