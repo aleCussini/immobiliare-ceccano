@@ -106,14 +106,14 @@ class MyCarousel extends Component {
 
 const InfoTable = () => {
     const leftInfo = [{Codice: 1}, {"Tipologia": 1}, {"Piano": 3}, {"Locali": 8}, {"Provincia": "BO"}, {"Riscaldamento": 2}, {"Condizionatori": 0}]
-    const rightInfo = [{"Contratto": 2}, {"Regione": "Lazio"}, {"Comune": "BO"}, {"Bagni": 2}, {"Camere": 6}, {"Totale MQ": 100}, {"Classe energetica": "B"}]
+    const rightInfo = [{"Contratto": 2}, {"Regione": "Lazio"}, {"Comune": "BO"}, {"Bagni": 2}, {"Camere": 6}, {"Totale MQ": 100}, {"Cl. energetica": "B"}]
     return (
         <div style={{display: "flex"}}>
             <Container style={{marginTop: '5%', marginBottom: '10%'}}>
                 {leftInfo.map(info =>
                     <Card square={true} variant={"outlined"}
                           style={{padding: "2%", display: "flex"}}>
-                        <div style={{flexGrow: 1}}>{Object.keys(info)[0]}:</div>
+                        <div style={{flexGrow: 1, color: "darkOrange"}}>{Object.keys(info)[0]}:</div>
                         {info[Object.keys(info)[0]]}
                     </Card>
                 )}
@@ -122,7 +122,7 @@ const InfoTable = () => {
                 {rightInfo.map(info =>
                     <Card square={true} variant={"outlined"}
                           style={{padding: "2%", display: "flex"}}>
-                        <div style={{flexGrow: 1}}>{Object.keys(info)[0]}:</div>
+                        <div style={{flexGrow: 1, color: "darkOrange"}}>{Object.keys(info)[0]}:</div>
                         {info[Object.keys(info)[0]]}
                     </Card>
                 )}
