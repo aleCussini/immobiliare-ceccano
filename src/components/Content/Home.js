@@ -53,19 +53,20 @@ function MyAppBar({isMobile}) {
                 className={classes.appBar}>
             <Toolbar className={classes.toolbar}>
                 <Link variant="h6" color="textPrimary" href={"/"} className={classes.toolbarTitle}>
-                    Agenzia Demo
+                    Mantua Immobiliare
                 </Link>
-                <Box justifyContent={"center"} style={{marginLeft: "10%", flexGrow: 1}}>
-                    <IconButton>
-                        <Facebook/>
-                    </IconButton>
-                    <IconButton>
-                        <Whatsapp/>
-                    </IconButton>
-                    <IconButton>
-                        <Instagram/>
-                    </IconButton>
-                </Box>
+                {!isMobile ?
+                    <div style={{marginLeft: "5%", flexGrow: 1}}>
+                        <IconButton>
+                            <Facebook/>
+                        </IconButton>
+                        <IconButton>
+                            <Whatsapp/>
+                        </IconButton>
+                        <IconButton>
+                            <Instagram/>
+                        </IconButton>
+                    </div> : null}
                 {!isMobile ?
                     <div>
                         <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
@@ -113,6 +114,18 @@ function MyAppBar({isMobile}) {
                             <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
                                 Chi Siamo?
                             </Link>
+                            <Divider/>
+                            <Box justifyContent={"center"} style={{display: "flex", marginTop: "5%"}}>
+                                <IconButton>
+                                    <Facebook/>
+                                </IconButton>
+                                <IconButton>
+                                    <Whatsapp/>
+                                </IconButton>
+                                <IconButton>
+                                    <Instagram/>
+                                </IconButton>
+                            </Box>
                         </Drawer>
                     </div>
                 }
