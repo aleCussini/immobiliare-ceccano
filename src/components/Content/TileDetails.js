@@ -104,6 +104,33 @@ class MyCarousel extends Component {
     }
 }
 
+const InfoTable = () => {
+    const leftInfo = [{Codice: 1}, {"Tipologia": 1}, {"Piano": 3}, {"Locali": 8}, {"Provincia": "BO"}, {"Riscaldamento": 2}, {"Condizionatori": 0}]
+    const rightInfo = [{"Contratto": 2}, {"Regione": "Lazio"}, {"Comune": "BO"}, {"Bagni": 2}, {"Camere": 6}, {"Totale MQ": 100}, {"Classe energetica": "B"}]
+    return (
+        <div style={{display: "flex"}}>
+            <Container style={{marginTop: '5%', marginBottom: '10%'}}>
+                {leftInfo.map(info =>
+                    <Card square={true} variant={"outlined"}
+                          style={{padding: "2%", display: "flex"}}>
+                        <div style={{flexGrow: 1}}>{Object.keys(info)[0]}:</div>
+                        {info[Object.keys(info)[0]]}
+                    </Card>
+                )}
+            </Container>
+            <Container style={{marginTop: '5%', marginBottom: '10%'}}>
+                {rightInfo.map(info =>
+                    <Card square={true} variant={"outlined"}
+                          style={{padding: "2%", display: "flex"}}>
+                        <div style={{flexGrow: 1}}>{Object.keys(info)[0]}:</div>
+                        {info[Object.keys(info)[0]]}
+                    </Card>
+                )}
+            </Container>
+        </div>
+    )
+}
+
 function TileDetails(props) {
     const {item} = props.location.state
     const classes = useStyles()
@@ -163,7 +190,10 @@ function TileDetails(props) {
                         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
                         id est laborum.
                     </Container>
-                    <Divider variant={"middle"} style={{marginTop: "5%"}}/>
+                    <Typography align={"center"}
+                                variant="h4"
+                                style={{marginTop: '5%'}}>{"Informazioni immobile"}</Typography>
+                    <InfoTable/>
                 </div>
             </Container>
         </div>
