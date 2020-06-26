@@ -86,7 +86,8 @@ const SearchBar = ({items, searchColumn}) => {
                                 label={"Per?"}
                                 children={[
                                     <MenuItem value={'sale'}>Comprare</MenuItem>,
-                                    <MenuItem value={'rent'}>Affittare</MenuItem>
+                                    <MenuItem value={'rent'}>Affittare</MenuItem>,
+                                    <MenuItem value={''}>- tutti -</MenuItem>
                                 ]}
                         />
                     </FormControl>
@@ -98,7 +99,8 @@ const SearchBar = ({items, searchColumn}) => {
                                 children={[
                                     <MenuItem value={'Roma'}>Roma</MenuItem>,
                                     <MenuItem value={'Firenze'}>Firenze</MenuItem>,
-                                    <MenuItem value={'Bari'}>Bari</MenuItem>
+                                    <MenuItem value={'Bari'}>Bari</MenuItem>,
+                                    <MenuItem value={''}>- tutti -</MenuItem>
                                 ]}
                         />
                     </FormControl>
