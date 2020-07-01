@@ -44,7 +44,7 @@ class Content extends Component {
                         <ContentView items={this.state.items}/>
                     )}
                     renderMobile={() => (
-                        <ContentView items={this.state.items} searchColumn={1} gridColumn={1}/>
+                        <ContentView items={this.state.items} searchColumn={1} gridColumn={1} containerWidth={"xs"}/>
                     )}
                 />
             </div>
