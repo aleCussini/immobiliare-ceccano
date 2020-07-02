@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Tile({item}) {
     const classes = useStyles()
+    console.log(item)
     return (
         <Card variant={"outlined"} style={{height: "max-content"}}>
             <CardActionArea component={Link}
@@ -34,7 +35,7 @@ function Tile({item}) {
                     title={item.title}
                     subheader={item.scope === 'sale' ? item.price + ' €' : item.price + ' €/mese'}
                 />
-                <CardMedia component={"img"} image={item.image}/>
+                <CardMedia component={"img"} image={item.image.src}/>
                 <CardContent>
                     {item.content}
                     <Breadcrumbs separator={"|"} style={{paddingTop: "5%"}}>
