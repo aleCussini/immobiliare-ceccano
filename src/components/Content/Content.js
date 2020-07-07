@@ -4,6 +4,8 @@ import React, {Component} from "react"
 import {withStyles} from "@material-ui/core"
 import db from "../Firebase/firebase-db"
 import MyBanner from "./Banner"
+import Quote from './Quote'
+import LastBlogsView from './LastBlogsView'
 
 const styles = theme => ({
     heroContent: {
@@ -13,6 +15,14 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing(8, 0, 6),
         marginBottom: -30
+    },
+    quoteContent: {
+        backgroundImage: 'url(https://www.sossystems.co.uk/wp-content/uploads/quote-background-03.png)',
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundColor: theme.palette.background.default,
+        padding: theme.spacing(8, 0, 6),
+        marginTop: 30
     }
 })
 
@@ -47,6 +57,8 @@ class Content extends Component {
                         <ContentView items={this.state.items} searchColumn={1} gridColumn={1} containerWidth={"xs"}/>
                     )}
                 />
+                <div className={classes.quoteContent}><Quote/></div>
+                <LastBlogsView></LastBlogsView>
             </div>
         )
     }
