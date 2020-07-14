@@ -1,5 +1,4 @@
 import React, {Component} from "react"
-import {makeStyles} from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
 //import 'react-image-gallery/styles/css/image-gallery.css'
 import Container from "@material-ui/core/Container"
@@ -12,7 +11,7 @@ import {Bathtub, Hotel, NavigateBefore, NavigateNext, SquareFoot} from "@materia
 import ReactAliceCarousel from "react-alice-carousel"
 import IconButton from "@material-ui/core/IconButton"
 import Divider from "@material-ui/core/Divider"
-import {Box} from "@material-ui/core"
+import {Box, withStyles} from "@material-ui/core"
 
 const images = [
     "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112655-15.jpg",
@@ -46,7 +45,7 @@ const images = [
     "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112803-50.jpg"
 ]
 
-const useStyles = makeStyles((theme) => ({
+const styles = theme => ({
     itemTitle: {
         marginTop: theme.spacing(3),
         marginBottom: theme.spacing(3),
@@ -59,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: "max-content",
         margin: "auto"
     }
-}))
+})
 
 class MyCarousel extends Component {
     state = {
@@ -131,73 +130,106 @@ const InfoTable = () => {
     )
 }
 
-function TileDetails(props) {
-    const {item} = props.location.state
-    const classes = useStyles()
+class TileDetails extends Component {
 
-    return (
-        <div>
-            <Typography align={"center"}
-                        variant="h5"
-                        className={classes.itemTitle}>{"Dettagli " + item.title}</Typography>
-            <Container maxWidth={"md"} style={{marginTop: '3%', marginBottom: '10%'}}>
-                <MyCarousel/>
-                <Box justifyContent={"center"} style={{display: "flex", marginTop: "2%"}}>
-                    <Card square={true} variant={"outlined"}
-                          style={{padding: "2%", marginRight: "1%", minWidth: "max-content", maxHeight: "max-content"}}>
-                        {/*aggiungere city in oggetto firebase!!!*/}
+    componentDidMount() {
+        window.scroll(0, 0)
+    }
+
+    render() {
+        const {item} = this.props.location.state
+        const {classes} = this.props
+        return (
+            <div>
+                <Typography align={"center"}
+                            variant="h5"
+                            className={classes.itemTitle}>{"Dettagli " + item.title}</Typography>
+                <Container maxWidth={"md"} style={{marginTop: '3%', marginBottom: '10%'}}>
+                    <MyCarousel/>
+                    <Box justifyContent={"center"} style={{display: "flex", marginTop: "2%"}}>
+                        <Card square={true} variant={"outlined"}
+                              style={{
+                                  padding: "2%",
+                                  marginRight: "1%",
+                                  minWidth: "max-content",
+                                  maxHeight: "max-content"
+                              }}>
+                            {/*aggiungere city in oggetto firebase!!!*/}
+                            <Typography align={"center"}
+                                        color={"secondary"}
+                                        variant="h6">{item.title}</Typography>
+                        </Card>
+                        <Card square={true} variant={"outlined"}
+                              style={{
+                                  padding: "2%",
+                                  minWidth: "max-content",
+                                  display: "flex",
+                                  maxHeight: "max-content"
+                              }}>
+                            <Bathtub style={{marginRight: 10}}/>&nbsp;
+                            <Typography align={"center"}
+                                        variant="h6">{"3 Bagni"}</Typography>
+                        </Card>
+                        <Card square={true} variant={"outlined"}
+                              style={{
+                                  padding: "2%",
+                                  minWidth: "max-content",
+                                  display: "flex",
+                                  maxHeight: "max-content"
+                              }}>
+                            <SquareFoot style={{marginRight: 10}}/>&nbsp;
+                            <Typography align={"center"}
+                                        variant="h6">{"90 MQ"}</Typography>
+                        </Card>
+                        <Card square={true} variant={"outlined"}
+                              style={{
+                                  padding: "2%",
+                                  minWidth: "max-content",
+                                  display: "flex",
+                                  maxHeight: "max-content"
+                              }}>
+                            <Hotel style={{marginRight: 10}}/>&nbsp;
+                            <Typography align={"center"}
+                                        variant="h6">{"9 Camere"}</Typography>
+                        </Card>
+                        <Card square={true} variant={"outlined"}
+                              style={{
+                                  padding: "2%",
+                                  marginLeft: "1%",
+                                  minWidth: "max-content",
+                                  maxHeight: "max-content"
+                              }}>
+                            <Typography align={"center"}
+                                        variant="h6"
+                                        color={"primary"}>{item.scope === 'sale' ? item.price + ' €' : item.price + ' €/mese'}</Typography>
+                        </Card>
+                    </Box>
+                    <div>
+                        <Divider variant={"middle"} style={{marginTop: "5%"}}/>
                         <Typography align={"center"}
-                                    color={"secondary"}
-                                    variant="h6">{item.title}</Typography>
-                    </Card>
-                    <Card square={true} variant={"outlined"}
-                          style={{padding: "2%", minWidth: "max-content", display: "flex", maxHeight: "max-content"}}>
-                        <Bathtub style={{marginRight: 10}}/>&nbsp;
+                                    variant="h4"
+                                    style={{marginTop: '5%'}}>{"Descrizione immobile"}</Typography>
+                        <Container style={{marginTop: '5%', marginBottom: '10%'}}>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo
+                            consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                            pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                            anim
+                            id est laborum.
+                        </Container>
                         <Typography align={"center"}
-                                    variant="h6">{"3 Bagni"}</Typography>
-                    </Card>
-                    <Card square={true} variant={"outlined"}
-                          style={{padding: "2%", minWidth: "max-content", display: "flex", maxHeight: "max-content"}}>
-                        <SquareFoot style={{marginRight: 10}}/>&nbsp;
-                        <Typography align={"center"}
-                                    variant="h6">{"90 MQ"}</Typography>
-                    </Card>
-                    <Card square={true} variant={"outlined"}
-                          style={{padding: "2%", minWidth: "max-content", display: "flex", maxHeight: "max-content"}}>
-                        <Hotel style={{marginRight: 10}}/>&nbsp;
-                        <Typography align={"center"}
-                                    variant="h6">{"9 Camere"}</Typography>
-                    </Card>
-                    <Card square={true} variant={"outlined"}
-                          style={{padding: "2%", marginLeft: "1%", minWidth: "max-content", maxHeight: "max-content"}}>
-                        <Typography align={"center"}
-                                    variant="h6"
-                                    color={"primary"}>{item.scope === 'sale' ? item.price + ' €' : item.price + ' €/mese'}</Typography>
-                    </Card>
-                </Box>
-                <div>
-                    <Divider variant={"middle"} style={{marginTop: "5%"}}/>
-                    <Typography align={"center"}
-                                variant="h4"
-                                style={{marginTop: '5%'}}>{"Descrizione immobile"}</Typography>
-                    <Container style={{marginTop: '5%', marginBottom: '10%'}}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-                        id est laborum.
-                    </Container>
-                    <Typography align={"center"}
-                                variant="h4"
-                                style={{marginTop: '5%'}}>{"Informazioni immobile"}</Typography>
-                    <InfoTable/>
-                </div>
-            </Container>
-        </div>
-    )
+                                    variant="h4"
+                                    style={{marginTop: '5%'}}>{"Informazioni immobile"}</Typography>
+                        <InfoTable/>
+                    </div>
+                </Container>
+            </div>
+        )
+    }
 }
 
-export default TileDetails
+export default withStyles(styles, {withTheme: true})(TileDetails)
