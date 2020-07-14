@@ -48,6 +48,20 @@ function MyAppBar({isMobile}) {
     const [openDrawer, setOpenDrawer] = useState(false)
     const classes = useStyles()
     const theme = useTheme()
+
+    const links = [
+        <Link variant="h6" color="textPrimary" href={"https://immobiliarestudioceccano.blogspot.com/"}
+              className={classes.link}>
+            Blog
+        </Link>,
+        <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
+            Contatti
+        </Link>,
+        <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
+            Chi Siamo?
+        </Link>
+    ]
+
     return (
         <AppBar variant={"elevation"} position="sticky" color="transparent" elevation={0}
                 className={classes.appBar}>
@@ -69,15 +83,7 @@ function MyAppBar({isMobile}) {
                     </div> : null}
                 {!isMobile ?
                     <div>
-                        <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
-                            Blog
-                        </Link>
-                        <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
-                            Contatti
-                        </Link>
-                        <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
-                            Chi Siamo?
-                        </Link>
+                        {links}
                     </div>
                     :
                     <div>
@@ -105,15 +111,7 @@ function MyAppBar({isMobile}) {
                                 </IconButton>
                             </div>
                             <Divider/>
-                            <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
-                                Blog
-                            </Link>
-                            <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
-                                Contatti
-                            </Link>
-                            <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
-                                Chi Siamo?
-                            </Link>
+                            {links}
                             <Divider/>
                             <Box justifyContent={"center"} style={{display: "flex", marginTop: "5%"}}>
                                 <IconButton>

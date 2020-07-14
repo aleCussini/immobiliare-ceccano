@@ -14,7 +14,7 @@ const ContentView = ({items, searchColumn, gridColumn, containerWidth}) => {
         <Container maxWidth={containerWidth ? containerWidth : (width < 1088 ? "sm" : "lg")}>
             <SearchBar items={items} searchColumn={searchColumn ? searchColumn : 4}/>
             <Typography variant="h4" align="left" style={{marginBottom: '1%'}}>
-                Utilmi Annunci
+                Ultimi Annunci
             </Typography>
             <GridList cols={gridColumn ? gridColumn : (width < 1088 ? 2 : 4)} spacing={8}>
                 {sortedItems.slice(0, 4).map((item) => (

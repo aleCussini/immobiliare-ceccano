@@ -58,7 +58,15 @@ class Content extends Component {
                     )}
                 />
                 <div className={classes.quoteContent}><Quote/></div>
-                <LastBlogsView></LastBlogsView>
+                <ResponsiveLayout
+                    breakPoint={767}
+                    renderDesktop={() => (
+                        <LastBlogsView/>
+                    )}
+                    renderMobile={() => (
+                        <LastBlogsView gridColumn={1}/>
+                    )}
+                />
             </div>
         )
     }
