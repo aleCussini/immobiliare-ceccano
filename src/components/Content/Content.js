@@ -9,7 +9,8 @@ import LastBlogsView from './LastBlogsView'
 
 const styles = theme => ({
     heroContent: {
-        backgroundImage: 'url(https://newlondonrealestateinc.com/wp-content/uploads/2016/01/Closing-Background-2.jpg)',
+        //backgroundImage: 'url(https://newlondonrealestateinc.com/wp-content/uploads/2016/01/Closing-Background-2.jpg)',
+        backgroundImage: 'url(https://www.sossystems.co.uk/wp-content/uploads/quote-background-03.png)',
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundColor: theme.palette.background.default,
@@ -23,6 +24,10 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing(8, 0, 6),
         marginTop: 30
+    },
+    background: {
+        backgroundImage: 'url(http://www.mediateamsoftware.com/images/0a5d5bcfe0be52c3c246b51620671a7e.jpg)',
+        backgroundRepeat: "repeat"
     }
 })
 
@@ -46,7 +51,7 @@ class Content extends Component {
     render() {
         const {classes} = this.props
         return (
-            <div>
+            <div className={classes.background}>
                 <div className={classes.heroContent}><MyBanner/></div>
                 <ResponsiveLayout
                     breakPoint={767}

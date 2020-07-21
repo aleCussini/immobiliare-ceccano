@@ -16,16 +16,18 @@ import Box from "@material-ui/core/Box"
 const useStyles = makeStyles((theme) => ({
     appBar: {
         borderBottom: `1px solid ${theme.palette.divider}`,
-        backgroundColor: 'white'
+        backgroundColor: '#1c1c1c'
     },
     toolbar: {
         flexWrap: 'wrap',
     },
     toolbarTitle: {
         flexGrow: 1,
+        color:'#e0e4ff'
     },
     link: {
         margin: theme.spacing(1, 1.5),
+        color:'#e0e4ff'
     },
     drawer: {
         // width: 240,
@@ -41,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
         justifyContent: 'flex-start',
+    },
+    footer:{
+        backgroundColor: '#1c1c1c'
     }
 }))
 
@@ -50,14 +55,14 @@ function MyAppBar({isMobile}) {
     const theme = useTheme()
 
     const links = [
-        <Link variant="h6" color="textPrimary" href={"https://immobiliarestudioceccano.blogspot.com/"}
+        <Link variant="h6"  href={"https://immobiliarestudioceccano.blogspot.com/"}
               className={classes.link}>
             Blog
         </Link>,
-        <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
+        <Link variant="h6"  href={"/"} className={classes.link}>
             Contatti
         </Link>,
-        <Link variant="h6" color="textPrimary" href={"/"} className={classes.link}>
+        <Link variant="h6"  href={"/"} className={classes.link}>
             Chi Siamo?
         </Link>
     ]
@@ -66,19 +71,19 @@ function MyAppBar({isMobile}) {
         <AppBar variant={"elevation"} position="sticky" color="transparent" elevation={0}
                 className={classes.appBar}>
             <Toolbar className={classes.toolbar}>
-                <Link variant="h6" color="textPrimary" href={"/"} className={classes.toolbarTitle}>
+                <Link variant="h6"  href={"/"} className={classes.toolbarTitle}>
                     Mantua Immobiliare
                 </Link>
                 {!isMobile ?
                     <div style={{marginLeft: "5%", flexGrow: 1}}>
                         <IconButton>
-                            <Facebook/>
+                            <Facebook  className={classes.link}/>
                         </IconButton>
                         <IconButton>
-                            <Whatsapp/>
+                            <Whatsapp  className={classes.link}/>
                         </IconButton>
                         <IconButton>
-                            <Instagram/>
+                            <Instagram  className={classes.link}/>
                         </IconButton>
                     </div> : null}
                 {!isMobile ?
@@ -133,15 +138,16 @@ function MyAppBar({isMobile}) {
 }
 
 function MyFooter() {
+    const classes = useStyles()
     return (
-        <footer style={{marginTop: '10%'}}>
-            <Typography variant="h6" align="center" gutterBottom>
+        <footer className={classes.footer}>
+            <Typography variant="h6" align="center" gutterBottom className={classes.link}>
                 Footer
             </Typography>
-            <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+            <Typography variant="subtitle1" align="center" component="p" className={classes.link}>
                 Something here to give the footer a purpose!
             </Typography>
-            <Typography variant="body2" color="textSecondary" align="center">
+            <Typography variant="body2" align="center" className={classes.link}>
                 {'Copyright © '}
                 <Link color="inherit" href="https://real-estate-pd.web.app/">
                     Your Website

@@ -4,6 +4,7 @@ import {useWindowDimensions} from '../WindowDimensionsProvider'
 import Container from "@material-ui/core/Container"
 import GridList from "@material-ui/core/GridList"
 import GridListTile from "@material-ui/core/GridListTile"
+import Typography from "@material-ui/core/Typography"
 
 const blogPosts = [
     <Blog item={{
@@ -27,6 +28,9 @@ const LastBlogsView = ({items, searchColumn, gridColumn}) => {
     const {width} = useWindowDimensions()
     return (
         <Container maxWidth={"lg"} style={{marginTop: "5%"}}>
+            <Typography variant="h4" align="left" style={{marginBottom: '1%'}}>
+                Post in Evidenza
+            </Typography>
             <GridList cols={gridColumn ? gridColumn : (width < 1088 ? 1 : 3)} spacing={8}>
                 {
                     blogPosts.map(bp => (

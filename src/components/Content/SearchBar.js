@@ -76,7 +76,7 @@ const SearchBar = ({items, searchColumn}) => {
 
     const classes = useStyles()
     return (
-        <AppBar position="static" color={"white"} style={{marginBottom: '5%'}}>
+        <AppBar position="static" color={"grey"} style={{marginBottom: '5%'}}>
             <Toolbar style={{display: "flex", justifyContent: "space-between"}}>
                 <div>
                     <FormControl className={classes.formControl}

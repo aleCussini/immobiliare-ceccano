@@ -45,12 +45,6 @@ function MyBanner() {
                                     <AttachMoneyIcon/>&nbsp;Vendere
                                 </Button></Link>
                         </Grid>
-                        <Grid item>
-                            <Link to="/rent">
-                                <Button variant="contained" color="primary">
-                                    <HandshakeIcon/>&nbsp;Locare
-                                </Button></Link>
-                        </Grid>
                     </Grid>
                 </div>
             </Container>

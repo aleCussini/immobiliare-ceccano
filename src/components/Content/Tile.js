@@ -5,7 +5,7 @@ import CardContent from "@material-ui/core/CardContent"
 import CardMedia from "@material-ui/core/CardMedia"
 import CardActionArea from "@material-ui/core/CardActionArea"
 import {Link} from "react-router-dom"
-import {Bathtub, Hotel, SquareFoot} from "@material-ui/icons"
+import {Bathtub, Hotel, SquareFoot, Home} from "@material-ui/icons"
 import Breadcrumbs from "@material-ui/core/Breadcrumbs"
 import Typography from "@material-ui/core/Typography"
 import {makeStyles} from "@material-ui/core/styles"
@@ -33,23 +33,25 @@ function Tile({item}) {
                             }}>
                 <CardHeader
                     title={item.title}
-                    subheader={item.scope === 'sale' ? item.price + ' €' : item.price + ' €/mese'}
+                    subheader={item.price + ' €'}
                 />
                 <CardMedia component={"img"} image={item.image.src}/>
                 <CardContent>
-                    {item.content}
+                    <Typography className={classes.link}>
+                        <Home className={classes.icon} />{item.address}
+                    </Typography>                    
                     <Breadcrumbs separator={"|"} style={{paddingTop: "5%"}}>
                         <Typography className={classes.link}>
                             <Bathtub className={classes.icon}/>
-                            3
+                            {item.bathrooms}
                         </Typography>
                         <Typography className={classes.link}>
                             <SquareFoot className={classes.icon}/>
-                            120 MQ
+                            {item.squaremeters}
                         </Typography>
                         <Typography className={classes.link}>
                             <Hotel className={classes.icon}/>
-                            9
+                            {item.rooms}
                         </Typography>
                     </Breadcrumbs>
                 </CardContent>
