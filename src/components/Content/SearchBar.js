@@ -12,8 +12,6 @@ import Collapse from "@material-ui/core/Collapse"
 import Divider from "@material-ui/core/Divider"
 import IconButton from "@material-ui/core/IconButton"
 import {Link} from "react-router-dom"
-import AttachMoneyIcon from "@material-ui/icons/AttachMoney"
-import PeopleAltIcon from "@material-ui/icons/PeopleAlt"
 import GridList from "@material-ui/core/GridList"
 import GridListTile from "@material-ui/core/GridListTile"
 import GridListTileBar from "@material-ui/core/GridListTileBar"
@@ -47,21 +45,26 @@ const useStyles = makeStyles((theme) => ({
 const SearchBar = ({items, searchColumn}) => {
     const [expanded, setExpanded] = useState(false)
     const [result, setResult] = useState([])
-    const [scope, setScope] = useState('')
+    const [rooms, setRooms] = useState(0)
+    const [bathrooms, setBathrooms] = useState(0)
     const [city, setCity] = useState('')
-    const [minPrice, setMinPrice] = useState('')
-    const [maxPrice, setMaxPrice] = useState('')
+    const [minPrice, setMinPrice] = useState(0)
+    const [maxPrice, setMaxPrice] = useState(0)
 
     function search() {
         if (city) {
             items = items.filter(function (item) {
-                return item.title === city // cambiare assolutamente title con city nell'ogetto firebase
+                return item.city === city // cambiare assolutamente title con city nell'ogetto firebase
             })
         }
-        if (scope)
+        if (rooms)
             items = items.filter(function (item) {
-                return item.scope === scope
+                return item.rooms === rooms
             })
+        if (bathrooms)
+            items = items.filter(function (item) {
+                return item.bathrooms === bathrooms
+        })
         if (minPrice)
             items = items.filter(function (item) {
                 return item.price > minPrice
@@ -81,15 +84,17 @@ const SearchBar = ({items, searchColumn}) => {
                 <div>
                     <FormControl className={classes.formControl}
                                  variant={"outlined"}>
-                        <InputLabel id="type-select-label">Per?</InputLabel>
-                        <Select labelId="type-select-label" onChange={e => setScope(e.target.value)}
-                                label={"Per?"}
-                                children={[
-                                    <MenuItem value={'sale'}>Comprare</MenuItem>,
-                                    <MenuItem value={'rent'}>Affittare</MenuItem>,
-                                    <MenuItem value={''}>- tutti -</MenuItem>
-                                ]}
-                        />
+                        <TextField label={"N. Camere"} inputMode={"numeric"}
+                                   onChange={e => setRooms(e.target.value)}
+                                   variant={"outlined"}
+                                   style={{width: 120}}/>
+                    </FormControl>
+                    <FormControl className={classes.formControl}
+                                 variant={"outlined"}>
+                        <TextField label={"N. Bagni"} inputMode={"numeric"}
+                                   onChange={e => setBathrooms(e.target.value)}
+                                   variant={"outlined"}
+                                   style={{width: 120}}/>
                     </FormControl>
                     <FormControl className={classes.formControl}
                                  variant={"outlined"}>
@@ -138,10 +143,9 @@ const SearchBar = ({items, searchColumn}) => {
                             <img src={r.image.src} alt={r.title}/>
                             <GridListTileBar
                                 title={r.title}
-                                subtitle={r.scope === 'sale' ? r.price + ' €' : r.price + ' €/mese'}
+                                subtitle={r.price + ' €'}
                                 actionIcon={
                                     <IconButton className={classes.gridTileIcon}>
-                                        {r.scope === 'sale' ? <AttachMoneyIcon/> : <PeopleAltIcon/>}
                                     </IconButton>
                                 }
                             />

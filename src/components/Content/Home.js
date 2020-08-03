@@ -45,7 +45,8 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'flex-start',
     },
     footer:{
-        backgroundColor: '#1c1c1c'
+        backgroundColor: '#1c1c1c',
+        marginTop: "0px"
     }
 }))
 

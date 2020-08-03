@@ -57,10 +57,21 @@ const styles = theme => ({
     carousel: {
         maxWidth: "max-content",
         margin: "auto"
-    }
+    },
+    background: {
+        backgroundImage: 'url(http://www.mediateamsoftware.com/images/0a5d5bcfe0be52c3c246b51620671a7e.jpg)',
+        backgroundRepeat: "repeat",
+        backgoundSize: "cover",
+        backgroundPosition: "center center",
+        paddingRight: "20%",
+        paddingLeft: "20%"
+    },
+    paper: {
+        backgroundColor: "white"    }
 })
 
 class MyCarousel extends Component {
+  
     state = {
         galleryItems: images.map(image =>
             <Card style={{maxWidth: "max-content", margin: "auto"}}>
@@ -76,6 +87,7 @@ class MyCarousel extends Component {
 
     render() {
         return (
+            
             <div>
                 <Grid
                     container
@@ -103,8 +115,9 @@ class MyCarousel extends Component {
     }
 }
 
-const InfoTable = () => {
-    const leftInfo = [{Codice: 1}, {"Tipologia": 1}, {"Piano": 3}, {"Locali": 8}, {"Provincia": "BO"}, {"Riscaldamento": 2}, {"Condizionatori": 0}]
+const InfoTable = (props) => {
+    const item = props.item
+    const leftInfo = [{Codice: 1}, {"Tipologia": item.type}, {"Piano": item.floor}, {"Locali": item.rooms}, {"Provincia": item.province}, {"Riscaldamento": item.heating}, {"Condizionatori": 0}]
     const rightInfo = [{"Contratto": 2}, {"Regione": "Lazio"}, {"Comune": "BO"}, {"Bagni": 2}, {"Camere": 6}, {"Totale MQ": 100}, {"Cl. energetica": "B"}]
     return (
         <div style={{display: "flex"}}>
@@ -140,7 +153,8 @@ class TileDetails extends Component {
         const {item} = this.props.location.state
         const {classes} = this.props
         return (
-            <div>
+            <div className={classes.background}>
+            <div className={classes.paper}>
                 <Typography align={"center"}
                             variant="h5"
                             className={classes.itemTitle}>{"Dettagli " + item.title}</Typography>
@@ -157,7 +171,7 @@ class TileDetails extends Component {
                             {/*aggiungere city in oggetto firebase!!!*/}
                             <Typography align={"center"}
                                         color={"secondary"}
-                                        variant="h6">{item.title}</Typography>
+                                        variant="h6">{item.city}</Typography>
                         </Card>
                         <Card square={true} variant={"outlined"}
                               style={{
@@ -168,7 +182,7 @@ class TileDetails extends Component {
                               }}>
                             <Bathtub style={{marginRight: 10}}/>&nbsp;
                             <Typography align={"center"}
-                                        variant="h6">{"3 Bagni"}</Typography>
+                                        variant="h6">{item.bathrooms + " Bagni"}</Typography>
                         </Card>
                         <Card square={true} variant={"outlined"}
                               style={{
@@ -179,7 +193,7 @@ class TileDetails extends Component {
                               }}>
                             <SquareFoot style={{marginRight: 10}}/>&nbsp;
                             <Typography align={"center"}
-                                        variant="h6">{"90 MQ"}</Typography>
+                                        variant="h6">{item.squaremeters + " MQ"}</Typography>
                         </Card>
                         <Card square={true} variant={"outlined"}
                               style={{
@@ -190,7 +204,7 @@ class TileDetails extends Component {
                               }}>
                             <Hotel style={{marginRight: 10}}/>&nbsp;
                             <Typography align={"center"}
-                                        variant="h6">{"9 Camere"}</Typography>
+                                        variant="h6">{item.rooms + " Camere"}</Typography>
                         </Card>
                         <Card square={true} variant={"outlined"}
                               style={{
@@ -201,7 +215,7 @@ class TileDetails extends Component {
                               }}>
                             <Typography align={"center"}
                                         variant="h6"
-                                        color={"primary"}>{item.scope === 'sale' ? item.price + ' €' : item.price + ' €/mese'}</Typography>
+                                        color={"primary"}>{item.price + ' €'}</Typography>
                         </Card>
                     </Box>
                     <div>
@@ -209,24 +223,16 @@ class TileDetails extends Component {
                         <Typography align={"center"}
                                     variant="h4"
                                     style={{marginTop: '5%'}}>{"Descrizione immobile"}</Typography>
-                        <Container style={{marginTop: '5%', marginBottom: '10%'}}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo
-                            consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                            anim
-                            id est laborum.
+                        <Container style={{marginTop: '5%', marginBottom: '10%', textAlign: 'center'}}>
+                           {item.content}
                         </Container>
                         <Typography align={"center"}
                                     variant="h4"
                                     style={{marginTop: '5%'}}>{"Informazioni immobile"}</Typography>
-                        <InfoTable/>
+                        <InfoTable item={item} />
                     </div>
                 </Container>
+                </div>
             </div>
         )
     }
