@@ -12,6 +12,7 @@ import ReactAliceCarousel from "react-alice-carousel"
 import IconButton from "@material-ui/core/IconButton"
 import Divider from "@material-ui/core/Divider"
 import {Box, withStyles} from "@material-ui/core"
+import {Link, RichText, Date} from 'prismic-reactjs';
 
 const images = [
     "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112655-15.jpg",
@@ -45,6 +46,7 @@ const images = [
     "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112803-50.jpg"
 ]
 
+var parse = require('html-react-parser');
 const styles = theme => ({
     itemTitle: {
         marginTop: theme.spacing(3),
@@ -224,7 +226,7 @@ class TileDetails extends Component {
                                     variant="h4"
                                     style={{marginTop: '5%'}}>{"Descrizione immobile"}</Typography>
                         <Container style={{marginTop: '5%', marginBottom: '10%', textAlign: 'center'}}>
-                           {item.content}
+                           {parse(item.content)}
                         </Container>
                         <Typography align={"center"}
                                     variant="h4"

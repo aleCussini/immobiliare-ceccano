@@ -10,16 +10,17 @@ import LastBlogsView from './LastBlogsView'
 const styles = theme => ({
     heroContent: {
         //backgroundImage: 'url(https://newlondonrealestateinc.com/wp-content/uploads/2016/01/Closing-Background-2.jpg)',
+        //backgroundImage: 'url(https://png.pngtree.com/thumb_back/fw800/background/20190223/ourmid/pngtree-minimalistic-blue-real-estate-theme-background-backgroundsimpledark-blue-backgroundreal-image_78519.jpg)',
         backgroundImage: 'url(https://www.sossystems.co.uk/wp-content/uploads/quote-background-03.png)',
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
+        backgroundRepeat: "repeat",
+        backgroundPosition: "bottom",
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing(8, 0, 6),
         marginBottom: -30
     },
     quoteContent: {
         backgroundImage: 'url(https://www.sossystems.co.uk/wp-content/uploads/quote-background-03.png)',
-        backgroundRepeat: "no-repeat",
+        backgroundRepeat: "repeat",
         backgroundPosition: "center",
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing(8, 0, 6),

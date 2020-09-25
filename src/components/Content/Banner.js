@@ -23,14 +23,14 @@ function MyBanner() {
     return (
         <div>
             <Container maxWidth={"sm"}>
-                <Typography component="h1" variant="h2" align='center' className={classes.headerTitle} gutterBottom>
+                <Typography component="h1" variant="h2" align='top' className={classes.headerTitle} gutterBottom>
                     Mantua Immobiliare
                 </Typography>
                 <Typography variant="h5" align="center" className={classes.headerTitle} paragraph>
                     I will write some great, great text on your website’s Southern border, and I will make Google
                     pay for that text.
                     Mark my words. Lorem Ipsum is a choke artist. It chokes!
-                </Typography>
+    </Typography> 
                 <div className={classes.heroButtons}>
                     <Grid container spacing={2} justify="center">
                         <Grid item>
