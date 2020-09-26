@@ -3,6 +3,12 @@ import Typography from "@material-ui/core/Typography"
 import React from "react"
 import {makeStyles} from "@material-ui/core/styles"
 import FormatQuoteIcon from '@material-ui/icons/FormatQuote'
+import db from "../Firebase/firebase-db"
+
+var quoteText;
+db.ref('texts/quote').once('value').then(function(snapshot) {
+    quoteText = snapshot.val();
+})
 
 const useStyles = makeStyles((theme) => ({
     heroButtons: {
@@ -29,8 +35,7 @@ function Quote() {
                 Luca Mantua
             </Typography>
             <Typography variant="h5" align="center" className={classes.headerTitle} paragraph>
-                <FormatQuoteIcon/>La casa è anche una storia. <br/> Ogni giorno studio e lavoro per imparare
-                a raccontare anche la tua.<br/> Se vorrai.<FormatQuoteIcon/>
+                <FormatQuoteIcon/>{quoteText}<FormatQuoteIcon/>
             </Typography>
         </Container>
     )

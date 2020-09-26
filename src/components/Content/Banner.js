@@ -4,11 +4,15 @@ import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import HomeIcon from "@material-ui/icons/Home"
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney"
-import HandshakeIcon from "mdi-material-ui/Handshake"
 import React from "react"
 import {makeStyles} from "@material-ui/core/styles"
 import {Link} from "react-router-dom"
+import db from "../Firebase/firebase-db"
 
+var bannerText;
+db.ref('texts/bannerText').once('value').then(function(snapshot) {
+    bannerText = snapshot.val();
+})
 const useStyles = makeStyles((theme) => ({
     heroButtons: {
         marginBottom: theme.spacing(2),
@@ -27,9 +31,7 @@ function MyBanner() {
                     Mantua Immobiliare
                 </Typography>
                 <Typography variant="h5" align="center" className={classes.headerTitle} paragraph>
-                    I will write some great, great text on your website’s Southern border, and I will make Google
-                    pay for that text.
-                    Mark my words. Lorem Ipsum is a choke artist. It chokes!
+                {bannerText}
     </Typography> 
                 <div className={classes.heroButtons}>
                     <Grid container spacing={2} justify="center">
