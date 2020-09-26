@@ -16,6 +16,7 @@ import GridList from "@material-ui/core/GridList"
 import GridListTile from "@material-ui/core/GridListTile"
 import GridListTileBar from "@material-ui/core/GridListTileBar"
 import {ExpandLess} from "@material-ui/icons"
+import db from "../Firebase/firebase-db"
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -45,34 +46,26 @@ const useStyles = makeStyles((theme) => ({
 const SearchBar = ({items, searchColumn}) => {
     const [expanded, setExpanded] = useState(false)
     const [result, setResult] = useState([])
-    const [rooms, setRooms] = useState(0)
-    const [bathrooms, setBathrooms] = useState(0)
     const [city, setCity] = useState('')
-    const [minPrice, setMinPrice] = useState(0)
     const [maxPrice, setMaxPrice] = useState(0)
+    const [type, setType] = useState(0)
+    var types = ["","Appartamento, Indipendente"];
 
     function search() {
         if (city) {
             items = items.filter(function (item) {
-                return item.city === city // cambiare assolutamente title con city nell'ogetto firebase
+                return item.city == city
             })
         }
-        if (rooms)
+        if (type)
             items = items.filter(function (item) {
-                return item.rooms === rooms
-            })
-        if (bathrooms)
-            items = items.filter(function (item) {
-                return item.bathrooms === bathrooms
+                return item.type == type
         })
-        if (minPrice)
-            items = items.filter(function (item) {
-                return item.price > minPrice
-            })
-        if (minPrice)
+        if(maxPrice){
             items = items.filter(function (item) {
                 return item.price < maxPrice
             })
+        }
         setResult(items)
         setExpanded(true)
     }
@@ -84,17 +77,13 @@ const SearchBar = ({items, searchColumn}) => {
                 <div>
                     <FormControl className={classes.formControl}
                                  variant={"outlined"}>
-                        <TextField label={"N. Camere"} inputMode={"numeric"}
-                                   onChange={e => setRooms(e.target.value)}
-                                   variant={"outlined"}
-                                   style={{width: 120}}/>
-                    </FormControl>
-                    <FormControl className={classes.formControl}
-                                 variant={"outlined"}>
-                        <TextField label={"N. Bagni"} inputMode={"numeric"}
-                                   onChange={e => setBathrooms(e.target.value)}
-                                   variant={"outlined"}
-                                   style={{width: 120}}/>
+                        <InputLabel id="type-select-label">Tipo</InputLabel>
+                        <Select labelId="type-select-label" onChange={e => setType(e.target.value)}
+                                label={"Tipo"}>
+                            <MenuItem value={1}>Appartamento</MenuItem>
+                            <MenuItem value={2}>Indipendente</MenuItem>
+                            <MenuItem value={''}>- tutti -</MenuItem>
+                        </Select>
                     </FormControl>
                     <FormControl className={classes.formControl}
                                  variant={"outlined"}>
@@ -108,12 +97,6 @@ const SearchBar = ({items, searchColumn}) => {
                                     <MenuItem value={''}>- tutti -</MenuItem>
                                 ]}
                         />
-                    </FormControl>
-                    <FormControl className={classes.formControl}>
-                        <TextField label={"Prezzo Min."} inputMode={"numeric"}
-                                   onChange={e => setMinPrice(e.target.value)}
-                                   variant={"outlined"}
-                                   style={{width: 120}}/>
                     </FormControl>
                     <FormControl className={classes.formControl}>
                         <TextField label={"Prezzo Max."} inputMode={"numeric"}

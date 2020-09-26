@@ -12,7 +12,6 @@ import ReactAliceCarousel from "react-alice-carousel"
 import IconButton from "@material-ui/core/IconButton"
 import Divider from "@material-ui/core/Divider"
 import {Box, withStyles} from "@material-ui/core"
-import {Link, RichText, Date} from 'prismic-reactjs';
 
 const images = [
     "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112655-15.jpg",
@@ -46,11 +45,13 @@ const images = [
     "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112803-50.jpg"
 ]
 
+
 var parse = require('html-react-parser');
 const styles = theme => ({
     itemTitle: {
-        marginTop: theme.spacing(3),
-        marginBottom: theme.spacing(3),
+        paddingTop: theme.spacing(3),
+        marginBottom: theme.spacing(3)
+
     },
     card: {
         maxWidth: "max-content",
@@ -73,7 +74,7 @@ const styles = theme => ({
 })
 
 class MyCarousel extends Component {
-  
+    
     state = {
         galleryItems: images.map(image =>
             <Card style={{maxWidth: "max-content", margin: "auto"}}>
@@ -118,8 +119,9 @@ class MyCarousel extends Component {
 }
 
 const InfoTable = (props) => {
+    var types = ["","Appartamento","Indipendente"];
     const item = props.item
-    const leftInfo = [{Codice: 1}, {"Tipologia": item.type}, {"Piano": item.floor}, {"Locali": item.rooms}, {"Provincia": item.province}, {"Riscaldamento": item.heating}, {"Condizionatori": 0}]
+    const leftInfo = [{Codice: 1}, {"Tipologia": types[item.type]}, {"Piano": item.floor}, {"Locali": item.rooms}, {"Provincia": item.province}, {"Riscaldamento": item.heating}, {"Condizionatori": 0}]
     const rightInfo = [{"Contratto": 2}, {"Regione": "Lazio"}, {"Comune": "BO"}, {"Bagni": 2}, {"Camere": 6}, {"Totale MQ": 100}, {"Cl. energetica": "B"}]
     return (
         <div style={{display: "flex"}}>
@@ -160,8 +162,8 @@ class TileDetails extends Component {
                 <Typography align={"center"}
                             variant="h5"
                             className={classes.itemTitle}>{"Dettagli " + item.title}</Typography>
-                <Container maxWidth={"md"} style={{marginTop: '3%', marginBottom: '10%'}}>
-                    <MyCarousel/>
+                <Container maxWidth={"md"} style={{marginTop: '3%', marginBottom: '0%'}}>
+                    <MyCarousel props={item}/>
                     <Box justifyContent={"center"} style={{display: "flex", marginTop: "2%"}}>
                         <Card square={true} variant={"outlined"}
                               style={{
@@ -184,7 +186,7 @@ class TileDetails extends Component {
                               }}>
                             <Bathtub style={{marginRight: 10}}/>&nbsp;
                             <Typography align={"center"}
-                                        variant="h6">{item.bathrooms + " Bagni"}</Typography>
+                                        variant="h6">{item.bathrooms}</Typography>
                         </Card>
                         <Card square={true} variant={"outlined"}
                               style={{
@@ -195,7 +197,7 @@ class TileDetails extends Component {
                               }}>
                             <SquareFoot style={{marginRight: 10}}/>&nbsp;
                             <Typography align={"center"}
-                                        variant="h6">{item.squaremeters + " MQ"}</Typography>
+                                        variant="h6">{item.squaremeters}</Typography>
                         </Card>
                         <Card square={true} variant={"outlined"}
                               style={{
@@ -206,7 +208,7 @@ class TileDetails extends Component {
                               }}>
                             <Hotel style={{marginRight: 10}}/>&nbsp;
                             <Typography align={"center"}
-                                        variant="h6">{item.rooms + " Camere"}</Typography>
+                                        variant="h6">{item.rooms}</Typography>
                         </Card>
                         <Card square={true} variant={"outlined"}
                               style={{

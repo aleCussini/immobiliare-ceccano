@@ -47,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
     footer:{
         backgroundColor: '#1c1c1c',
         marginTop: "0px"
+    },
+    footerMargin:{
+        margin:'0px',
+        color:'#e0e4ff'
     }
 }))
 
@@ -58,9 +62,13 @@ function MyAppBar({isMobile}) {
     const links = [
         <Link variant="h6"  href={"https://immobiliarestudioceccano.blogspot.com/"}
               className={classes.link}>
+            Servizi
+        </Link>,
+        <Link variant="h6"  href={"https://immobiliarestudioceccano.blogspot.com/"}
+              className={classes.link}>
             Blog
         </Link>,
-        <Link variant="h6"  href={"/"} className={classes.link}>
+        <Link variant="h6"  href={"/contacts"} className={classes.link}>
             Contatti
         </Link>,
         <Link variant="h6"  href={"/"} className={classes.link}>
@@ -142,13 +150,13 @@ function MyFooter() {
     const classes = useStyles()
     return (
         <footer className={classes.footer}>
-            <Typography variant="h6" align="center" gutterBottom className={classes.link}>
+            <Typography variant="h6" align="center" gutterBottom className={classes.footerMargin}>
                 Footer
             </Typography>
             <Typography variant="subtitle1" align="center" component="p" className={classes.link}>
                 Something here to give the footer a purpose!
             </Typography>
-            <Typography variant="body2" align="center" className={classes.link}>
+            <Typography variant="body2" align="center" className={classes.footerMargin}>
                 {'Copyright © '}
                 <Link color="inherit" href="https://real-estate-pd.web.app/">
                     Your Website
