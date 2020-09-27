@@ -6,8 +6,13 @@ import FormatQuoteIcon from '@material-ui/icons/FormatQuote'
 import db from "../Firebase/firebase-db"
 
 var quoteText;
-db.ref('texts/quote').once('value').then(function(snapshot) {
-    quoteText = snapshot.val();
+var quoteQuery = db.ref('texts');
+quoteQuery.once('value').then(function(snapshotSet) {
+    snapshotSet.forEach(snapshot => {
+        if(snapshot.val().scope == "quote"){
+            quoteText = snapshot.val().content;
+        }
+    })
 })
 
 const useStyles = makeStyles((theme) => ({

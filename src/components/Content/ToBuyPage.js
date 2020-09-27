@@ -8,8 +8,12 @@ import db from "../Firebase/firebase-db"
 
 var parse = require('html-react-parser');
 var toBuyText;
-db.ref('texts/toBuyText').once('value').then(function(snapshot) {
-    toBuyText = snapshot.val();
+db.ref('texts').once('value').then(function(snapshotSet) {
+    snapshotSet.forEach(snapshot => {
+        if(snapshot.val().scope=='toBuy'){
+            toBuyText = snapshot.val().richContent
+        }
+    })
 })
 
 const useStyles = makeStyles((theme) => ({
@@ -28,11 +32,8 @@ function ToBuyPage(props) {
             <Typography align={"center"}
                         variant="h2"
                         className={classes.itemTitle}>{"Per Comprare"}</Typography>
-                 <Typography align={"center"}
-                        variant="h4"
-                        className={classes.itemTitle}>{"Some Title Here"}</Typography>
             <Container maxWidth={"md"} style={{marginTop: '5%', marginBottom: '10%'}}>
-                {toBuyText}
+                {parse(toBuyText)}
             </Container>
         </div>
     )

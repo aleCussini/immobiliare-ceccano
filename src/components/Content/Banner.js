@@ -10,8 +10,13 @@ import {Link} from "react-router-dom"
 import db from "../Firebase/firebase-db"
 
 var bannerText;
-db.ref('texts/bannerText').once('value').then(function(snapshot) {
-    bannerText = snapshot.val();
+var bannerQuery = db.ref('texts');
+bannerQuery.once('value').then(function(snapshotSet) {
+    snapshotSet.forEach(snapshot => {
+        if(snapshot.val().scope == "banner"){
+            bannerText = snapshot.val().content;
+        }
+    })
 })
 const useStyles = makeStyles((theme) => ({
     heroButtons: {

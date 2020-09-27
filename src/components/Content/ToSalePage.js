@@ -8,8 +8,13 @@ import db from "../Firebase/firebase-db"
 
 var parse = require('html-react-parser');
 var toSaleText;
-db.ref('texts/toSaleText').once('value').then(function(snapshot) {
-    toSaleText = snapshot.val();
+var toSaleQuery = db.ref('texts');
+toSaleQuery.once('value').then(function(snapshotSet) {
+    snapshotSet.forEach(snapshot => {
+        if(snapshot.val().scope=='toSale'){
+            toSaleText = snapshot.val().richContent
+        }
+    })
 })
 
 const useStyles = makeStyles((theme) => ({
@@ -28,11 +33,8 @@ function ToSalePage(props) {
             <Typography align={"center"}
                         variant="h2"
                         className={classes.itemTitle}>{"Per Vendere"}</Typography>
-                 <Typography align={"center"}
-                        variant="h4"
-                        className={classes.itemTitle}>{"UN PIANO MARKETING SU MISURA PER CASA TUA"}</Typography>
             <Container maxWidth={"md"} style={{marginTop: '5%', marginBottom: '10%'}}>
-                   {toSaleText}
+                {parse(toSaleText)}
             </Container>
         </div>
     )
