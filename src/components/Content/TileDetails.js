@@ -1,6 +1,5 @@
 import React, {Component} from "react"
 import Typography from "@material-ui/core/Typography"
-//import 'react-image-gallery/styles/css/image-gallery.css'
 import Container from "@material-ui/core/Container"
 import CardMedia from "@material-ui/core/CardMedia"
 import Card from "@material-ui/core/Card"
@@ -45,8 +44,7 @@ const images = [
     "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112803-50.jpg"
 ]
 
-
-var parse = require('html-react-parser');
+let parse = require('html-react-parser')
 const styles = theme => ({
     itemTitle: {
         paddingTop: theme.spacing(3),
@@ -64,17 +62,36 @@ const styles = theme => ({
     background: {
         backgroundImage: 'url(http://www.mediateamsoftware.com/images/0a5d5bcfe0be52c3c246b51620671a7e.jpg)',
         backgroundRepeat: "repeat",
-        backgoundSize: "cover",
         backgroundPosition: "center center",
-        paddingRight: "20%",
-        paddingLeft: "20%"
+        [theme.breakpoints.up('md')]: {
+            paddingRight: "10%",
+            paddingLeft: "10%",
+        },
     },
     paper: {
-        backgroundColor: "white"    }
+        backgroundColor: "white"
+    },
+    infoTable: {
+        [theme.breakpoints.up('md')]: {
+            display: "flex",
+        },
+    },
+    leftInfoTable: {
+        marginTop: '5%',
+        [theme.breakpoints.up('md')]: {
+            marginBottom: '10%',
+        },
+    },
+    rightInfoTable: {
+        marginBottom: '10%',
+        [theme.breakpoints.up('md')]: {
+            marginTop: '5%',
+        },
+    },
 })
 
 class MyCarousel extends Component {
-    
+
     state = {
         galleryItems: images.map(image =>
             <Card style={{maxWidth: "max-content", margin: "auto"}}>
@@ -90,7 +107,7 @@ class MyCarousel extends Component {
 
     render() {
         return (
-            
+
             <div>
                 <Grid
                     container
@@ -119,13 +136,14 @@ class MyCarousel extends Component {
 }
 
 const InfoTable = (props) => {
-    var types = ["","Appartamento","Indipendente"];
+    const types = ["", "Appartamento", "Indipendente"]
     const item = props.item
+    const classes = props.classes
     const leftInfo = [{Codice: 1}, {"Tipologia": types[item.type]}, {"Piano": item.floor}, {"Locali": item.rooms}, {"Provincia": item.province}, {"Riscaldamento": item.heating}, {"Condizionatori": 0}]
     const rightInfo = [{"Contratto": 2}, {"Regione": "Lazio"}, {"Comune": "BO"}, {"Bagni": 2}, {"Camere": 6}, {"Totale MQ": 100}, {"Cl. energetica": "B"}]
     return (
-        <div style={{display: "flex"}}>
-            <Container style={{marginTop: '5%', marginBottom: '10%'}}>
+        <div className={classes.infoTable}>
+            <Container className={classes.leftInfoTable}>
                 {leftInfo.map(info =>
                     <Card square={true} variant={"outlined"}
                           style={{padding: "2%", display: "flex"}}>
@@ -134,7 +152,7 @@ const InfoTable = (props) => {
                     </Card>
                 )}
             </Container>
-            <Container style={{marginTop: '5%', marginBottom: '10%'}}>
+            <Container className={classes.rightInfoTable}>
                 {rightInfo.map(info =>
                     <Card square={true} variant={"outlined"}
                           style={{padding: "2%", display: "flex"}}>
@@ -158,84 +176,72 @@ class TileDetails extends Component {
         const {classes} = this.props
         return (
             <div className={classes.background}>
-            <div className={classes.paper}>
-                <Typography align={"center"}
-                            variant="h5"
-                            className={classes.itemTitle}>{"Dettagli " + item.title}</Typography>
-                <Container maxWidth={"md"} style={{marginTop: '3%', marginBottom: '0%'}}>
-                    <MyCarousel props={item}/>
-                    <Box justifyContent={"center"} style={{display: "flex", marginTop: "2%"}}>
-                        <Card square={true} variant={"outlined"}
-                              style={{
-                                  padding: "2%",
-                                  marginRight: "1%",
-                                  minWidth: "max-content",
-                                  maxHeight: "max-content"
-                              }}>
-                            {/*aggiungere city in oggetto firebase!!!*/}
+                <div className={classes.paper}>
+                    <Typography align={"center"}
+                                variant="h5"
+                                className={classes.itemTitle}>{"Dettagli " + item.title}</Typography>
+                    <Container style={{marginTop: '3%', marginBottom: '0%'}}>
+                        <MyCarousel props={item}/>
+                        <Box justifyContent={"center"} style={{display: "flex", marginTop: "2%"}}>
+                            <Card square={true} variant={"outlined"}
+                                  style={{
+                                      padding: "2%",
+                                      minWidth: "max-content",
+                                      display: "flex",
+                                      maxHeight: "max-content"
+                                  }}>
+                                <Bathtub style={{marginRight: 10}}/>&nbsp;
+                                <Typography align={"center"}
+                                            variant="h6">{item.bathrooms}</Typography>
+                            </Card>
+                            <Card square={true} variant={"outlined"}
+                                  style={{
+                                      padding: "2%",
+                                      minWidth: "max-content",
+                                      display: "flex",
+                                      maxHeight: "max-content"
+                                  }}>
+                                <SquareFoot style={{marginRight: 10}}/>&nbsp;
+                                <Typography align={"center"}
+                                            variant="h6">{item.squaremeters}</Typography>
+                            </Card>
+                            <Card square={true} variant={"outlined"}
+                                  style={{
+                                      padding: "2%",
+                                      minWidth: "max-content",
+                                      display: "flex",
+                                      maxHeight: "max-content"
+                                  }}>
+                                <Hotel style={{marginRight: 10}}/>&nbsp;
+                                <Typography align={"center"}
+                                            variant="h6">{item.rooms}</Typography>
+                            </Card>
+                            <Card square={true} variant={"outlined"}
+                                  style={{
+                                      padding: "2%",
+                                      marginLeft: "1%",
+                                      minWidth: "max-content",
+                                      maxHeight: "max-content"
+                                  }}>
+                                <Typography align={"center"}
+                                            variant="h6"
+                                            color={"primary"}>{item.price + ' €'}</Typography>
+                            </Card>
+                        </Box>
+                        <div>
+                            <Divider variant={"middle"} style={{marginTop: "5%"}}/>
                             <Typography align={"center"}
-                                        color={"secondary"}
-                                        variant="h6">{item.city}</Typography>
-                        </Card>
-                        <Card square={true} variant={"outlined"}
-                              style={{
-                                  padding: "2%",
-                                  minWidth: "max-content",
-                                  display: "flex",
-                                  maxHeight: "max-content"
-                              }}>
-                            <Bathtub style={{marginRight: 10}}/>&nbsp;
+                                        variant="h4"
+                                        style={{marginTop: '5%'}}>{"Descrizione immobile"}</Typography>
+                            <Container style={{marginTop: '5%', marginBottom: '10%', textAlign: 'center'}}>
+                                {parse(item.content)}
+                            </Container>
                             <Typography align={"center"}
-                                        variant="h6">{item.bathrooms}</Typography>
-                        </Card>
-                        <Card square={true} variant={"outlined"}
-                              style={{
-                                  padding: "2%",
-                                  minWidth: "max-content",
-                                  display: "flex",
-                                  maxHeight: "max-content"
-                              }}>
-                            <SquareFoot style={{marginRight: 10}}/>&nbsp;
-                            <Typography align={"center"}
-                                        variant="h6">{item.squaremeters}</Typography>
-                        </Card>
-                        <Card square={true} variant={"outlined"}
-                              style={{
-                                  padding: "2%",
-                                  minWidth: "max-content",
-                                  display: "flex",
-                                  maxHeight: "max-content"
-                              }}>
-                            <Hotel style={{marginRight: 10}}/>&nbsp;
-                            <Typography align={"center"}
-                                        variant="h6">{item.rooms}</Typography>
-                        </Card>
-                        <Card square={true} variant={"outlined"}
-                              style={{
-                                  padding: "2%",
-                                  marginLeft: "1%",
-                                  minWidth: "max-content",
-                                  maxHeight: "max-content"
-                              }}>
-                            <Typography align={"center"}
-                                        variant="h6"
-                                        color={"primary"}>{item.price + ' €'}</Typography>
-                        </Card>
-                    </Box>
-                    <div>
-                        <Divider variant={"middle"} style={{marginTop: "5%"}}/>
-                        <Typography align={"center"}
-                                    variant="h4"
-                                    style={{marginTop: '5%'}}>{"Descrizione immobile"}</Typography>
-                        <Container style={{marginTop: '5%', marginBottom: '10%', textAlign: 'center'}}>
-                           {parse(item.content)}
-                        </Container>
-                        <Typography align={"center"}
-                                    variant="h4"
-                                    style={{marginTop: '5%'}}>{"Informazioni immobile"}</Typography>
-                        <InfoTable item={item} />
-                    </div>
-                </Container>
+                                        variant="h4"
+                                        style={{marginTop: '5%'}}>{"Informazioni immobile"}</Typography>
+                            <InfoTable item={item} classes={classes}/>
+                        </div>
+                    </Container>
                 </div>
             </div>
         )
