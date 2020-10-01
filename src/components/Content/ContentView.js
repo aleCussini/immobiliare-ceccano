@@ -8,7 +8,10 @@ import GridListTile from "@material-ui/core/GridListTile"
 import Typography from "@material-ui/core/Typography"
 
 const ContentView = ({items, searchColumn, gridColumn, containerWidth}) => {
-    let sortedItems = items.sort((a, b) => (a.update < b.update) ? 1 : ((b.update < a.update) ? -1 : 0)) //order by update desc
+    let starredItems = items.filter(function (starredItem){
+        console.log(starredItem);
+        return starredItem.starred == true;
+    });
     const {width} = useWindowDimensions()
     return (
         <Container maxWidth={containerWidth ? containerWidth : (width < 1088 ? "sm" : "lg")}>
@@ -17,7 +20,7 @@ const ContentView = ({items, searchColumn, gridColumn, containerWidth}) => {
                 Ultimi Annunci
             </Typography>
             <GridList cols={gridColumn ? gridColumn : (width < 1088 ? 2 : 4)} spacing={8}>
-                {sortedItems.slice(0, 4).map((item) => (
+                {starredItems.slice(0, 4).map((item) => (
                     <GridListTile style={{height: "max-content"}}>
                         <Tile key={item.title} item={item}/>
                     </GridListTile>
