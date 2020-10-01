@@ -2,6 +2,7 @@ import React from 'react'
 import WindowDimensionsProvider from './components/WindowDimensionsProvider'
 import {BrowserRouter} from "react-router-dom"
 import Home from "./components/Content/Home"
+import "./App.css"
 
 const App = () => {
     return (
