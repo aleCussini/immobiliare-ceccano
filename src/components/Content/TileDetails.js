@@ -11,6 +11,9 @@ import ReactAliceCarousel from "react-alice-carousel"
 import IconButton from "@material-ui/core/IconButton"
 import Divider from "@material-ui/core/Divider"
 import {Box, withStyles} from "@material-ui/core"
+import {Map, Marker, TileLayer} from 'react-leaflet'
+import FullscreenControl from "react-leaflet-fullscreen"
+import 'react-leaflet-fullscreen/dist/styles.css'
 
 const images = [
     "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112655-15.jpg",
@@ -44,7 +47,10 @@ const images = [
     "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112803-50.jpg"
 ]
 
+const osmUrl = "https://nominatim.openstreetmap.org/?format=json&limit=1&q="
+
 let parse = require('html-react-parser')
+
 const styles = theme => ({
     itemTitle: {
         paddingTop: theme.spacing(3),
@@ -87,7 +93,7 @@ const styles = theme => ({
         [theme.breakpoints.up('md')]: {
             marginTop: '5%',
         },
-    },
+    }
 })
 
 class MyCarousel extends Component {
@@ -135,6 +141,21 @@ class MyCarousel extends Component {
     }
 }
 
+const MyMap = ({position}) => {
+    return (
+        <Container style={{paddingBottom: '5%'}}>
+            <Map center={position} zoom={20}>
+                <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                />
+                <Marker position={position}/>
+                <FullscreenControl position="topleft"/>
+            </Map>
+        </Container>
+    )
+}
+
 const InfoTable = (props) => {
     const types = ["", "Appartamento", "Indipendente"]
     const item = props.item
@@ -166,9 +187,20 @@ const InfoTable = (props) => {
 }
 
 class TileDetails extends Component {
+    state = {position: null}
 
     componentDidMount() {
         window.scroll(0, 0)
+        const {item} = this.props.location.state
+        console.log("Address", item.address)
+        fetch(osmUrl.concat(item.address))
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('This is your data', data)
+                const p = data[0]
+                this.setState({position: [p.lat, p.lon]})
+                console.log('Map state', this.state)
+            })
     }
 
     render() {
@@ -240,6 +272,7 @@ class TileDetails extends Component {
                                         variant="h4"
                                         style={{marginTop: '5%'}}>{"Informazioni immobile"}</Typography>
                             <InfoTable item={item} classes={classes}/>
+                            {this.state.position ? <MyMap position={this.state.position}/> : null}
                         </div>
                     </Container>
                 </div>
