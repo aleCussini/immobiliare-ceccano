@@ -84,7 +84,7 @@ function MyAppBar({isMobile}) {
                     Mantua Immobiliare
                 </Link>
                 {!isMobile ?
-                    <div style={{marginLeft: "5%", flexGrow: 1}}>
+                    <div style={{marginLeft: "15%", flexGrow: 1}}>
                         <IconButton>
                             <Facebook  className={classes.link}/>
                         </IconButton>
