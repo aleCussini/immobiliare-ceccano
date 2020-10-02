@@ -6,7 +6,7 @@ import {makeStyles, useTheme} from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
 import Routes from "../Routes"
 import IconButton from "@material-ui/core/IconButton"
-import {ChevronLeft, ChevronRight, Facebook, Instagram, Menu} from "@material-ui/icons"
+import {ChevronLeft, ChevronRight, Facebook, Email, Menu} from "@material-ui/icons"
 import {useWindowDimensions} from "../WindowDimensionsProvider"
 import Drawer from "@material-ui/core/Drawer"
 import Divider from "@material-ui/core/Divider"
@@ -70,10 +70,10 @@ function MyAppBar({isMobile}) {
         </Link>,
         <Link variant="h6"  href={"/contacts"} className={classes.link}>
             Contatti
-        </Link>,
-        <Link variant="h6"  href={"/"} className={classes.link}>
-            Chi Siamo?
         </Link>
+        /*<Link variant="h6"  href={"/"} className={classes.link}>
+            Chi Siamo?
+        </Link>*/
     ]
 
     return (
@@ -84,16 +84,19 @@ function MyAppBar({isMobile}) {
                     Mantua Immobiliare
                 </Link>
                 {!isMobile ?
-                    <div style={{marginLeft: "15%", flexGrow: 1}}>
-                        <IconButton>
-                            <Facebook  className={classes.link}/>
+                    <div style={{ flexGrow: 1}}>
+                        <Link href={"https://www.facebook.com/immobiliarececcano/"}> <IconButton>
+                            <Facebook className={classes.link}/>
                         </IconButton>
+                        </Link>
                         <IconButton>
                             <Whatsapp  className={classes.link}/>
                         </IconButton>
+                        <Link href={"/contacts"}>
                         <IconButton>
-                            <Instagram  className={classes.link}/>
+                            <Email  className={classes.link}/>
                         </IconButton>
+                        </Link>
                     </div> : null}
                 {!isMobile ?
                     <div>
@@ -135,7 +138,7 @@ function MyAppBar({isMobile}) {
                                     <Whatsapp/>
                                 </IconButton>
                                 <IconButton>
-                                    <Instagram/>
+                                    <Email/>
                                 </IconButton>
                             </Box>
                         </Drawer>
@@ -151,18 +154,15 @@ function MyFooter() {
     return (
         <footer className={classes.footer}>
             <Typography variant="h6" align="center" gutterBottom className={classes.footerMargin}>
-                Footer
+                Luca Mantua
             </Typography>
             <Typography variant="subtitle1" align="center" component="p" className={classes.link}>
-                Something here to give the footer a purpose!
+                +39 33331554687 - 
+                luca.mantua@mail.it - 
+                corso magellano, 84 - Monopoli (IT)
             </Typography>
             <Typography variant="body2" align="center" className={classes.footerMargin}>
-                {'Copyright © '}
-                <Link color="inherit" href="https://real-estate-pd.web.app/">
-                    Your Website
-                </Link>{' '}
-                {new Date().getFullYear()}
-                {'.'}
+                    Developed by MediaTeamSoftware
             </Typography>
         </footer>
     )
