@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 function sendFeedback () {
     window.emailjs.send(
-      'gmail', "template_6k8v7wh","tes-message","test-name","cick92@tiscali.it"
+      'gmail', "template_6k8v7wh","tes-message","test-name","alecussini@gmail.com"
       ).then(res => {
         console.log('Email successfully sent!')
       })

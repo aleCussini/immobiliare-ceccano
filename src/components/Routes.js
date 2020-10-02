@@ -5,6 +5,8 @@ import Content from "./Content/Content"
 import ToSalePage from "./Content/ToSalePage"
 import ToBuyPage from "./Content/ToBuyPage"
 import Contacts from "./Content/Contacts"
+import Services from "./Content/Services"
+
 
 const Routes = () => {
     return (
@@ -14,6 +16,7 @@ const Routes = () => {
             <Route path="/sale" render={(props) => <ToSalePage {...props}/>}/>
             <Route path="/buy" render={(props) => <ToBuyPage {...props}/>}/>
             <Route path="/contacts" render={() => <Contacts/>}/>
+            <Route path="/services" render={() => <Services/>}/>
         </Switch>
     )
 }

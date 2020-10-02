@@ -60,7 +60,7 @@ function MyAppBar({isMobile}) {
     const theme = useTheme()
 
     const links = [
-        <Link variant="h6"  href={"https://immobiliarestudioceccano.blogspot.com/"}
+        <Link variant="h6"  href={"/services"}
               className={classes.link}>
             Servizi
         </Link>,
