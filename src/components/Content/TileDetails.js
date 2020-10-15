@@ -15,38 +15,6 @@ import {Map, Marker, TileLayer} from 'react-leaflet'
 import FullscreenControl from "react-leaflet-fullscreen"
 import 'react-leaflet-fullscreen/dist/styles.css'
 
-const images = [
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112655-15.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112643-9.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112649-12.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112634-5.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112636-6.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112626-1.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112640-8.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112651-13.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112653-14.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112658-17.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112700-18.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112702-19.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112706-21.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112719-28.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112714-25.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112717-27.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112721-29.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112725-31.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112731-34.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112734-36.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112736-37.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112740-39.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112746-42.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112748-43.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112750-44.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112754-46.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112757-47.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112758-48.jpg",
-    "https://cdn2.gestim.biz/custom/01433/foto/thumb/20200219112803-50.jpg"
-]
-
 const osmUrl = "https://nominatim.openstreetmap.org/?format=json&limit=1&q="
 
 let parse = require('html-react-parser')
@@ -97,12 +65,14 @@ const styles = theme => ({
 })
 
 class MyCarousel extends Component {
-
-    state = {
-        galleryItems: images.map(image =>
-            <Card style={{maxWidth: "max-content", margin: "auto"}}>
-                <CardMedia component={"img"} image={image}/>
-            </Card>)
+    constructor(props) {
+        super(props)
+        this.state = {
+            galleryItems: props.props.gallery.map(image =>
+                <Card style={{maxWidth: "max-content", margin: "auto"}}>
+                    <CardMedia component={"img"} image={image.src}/>
+                </Card>)
+        }
     }
 
     thumbItem = (item, i) => (
@@ -113,7 +83,6 @@ class MyCarousel extends Component {
 
     render() {
         return (
-
             <div>
                 <Grid
                     container
@@ -191,8 +160,11 @@ class TileDetails extends Component {
 
     componentDidMount() {
         window.scroll(0, 0)
+
         const {item} = this.props.location.state
+
         console.log("Address", item.address)
+
         fetch(osmUrl.concat(item.address))
             .then((response) => response.json())
             .then((data) => {
