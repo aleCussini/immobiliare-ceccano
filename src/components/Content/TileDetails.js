@@ -68,7 +68,7 @@ class MyCarousel extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            galleryItems: props.props.gallery.map(image =>
+            galleryItems: props.item.gallery.map(image =>
                 <Card style={{maxWidth: "max-content", margin: "auto"}}>
                     <CardMedia component={"img"} image={image.src}/>
                 </Card>)
@@ -185,7 +185,7 @@ class TileDetails extends Component {
                                 variant="h5"
                                 className={classes.itemTitle}>{"Dettagli " + item.title}</Typography>
                     <Container style={{marginTop: '3%', marginBottom: '0%'}}>
-                        <MyCarousel props={item}/>
+                        <MyCarousel item={item}/>
                         <Box justifyContent={"center"} style={{display: "flex", marginTop: "2%"}}>
                             <Card square={true} variant={"outlined"}
                                   style={{
