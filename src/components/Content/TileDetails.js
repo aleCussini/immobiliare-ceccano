@@ -130,7 +130,7 @@ const InfoTable = (props) => {
     const item = props.item
     const classes = props.classes
     const leftInfo = [{"Tipologia": types[item.type]}, {"Piano": item.floor}, {"Provincia": item.province}, {"Riscaldamento": item.heating == 'False' ? 'No' : 'Si'}, {"Condizionatori": item.airconditioners == 'False' ? 'No' : 'Si'}]
-    const rightInfo = [{"Contratto": 2}, {"Comune": item.city}, {"Bagni": item.bathrooms}, {"Camere": item.rooms}, {"Totale MQ": item.squaremeters}]
+    const rightInfo = [{"Indirizzo": item.address}, {"Comune": item.city}, {"Bagni": item.bathrooms}, {"Camere": item.rooms}, {"Totale MQ": item.squaremeters}]
     return (
         <div className={classes.infoTable}>
             <Container className={classes.leftInfoTable}>
@@ -187,6 +187,17 @@ class TileDetails extends Component {
                     <Container style={{marginTop: '3%', marginBottom: '0%'}}>
                         <MyCarousel item={item}/>
                         <Box justifyContent={"center"} style={{display: "flex", marginTop: "2%"}}>
+                            <Card square={true} variant={"outlined"}
+                                  style={{
+                                      padding: "2%",
+                                      marginRight: "1%",
+                                      minWidth: "max-content",
+                                      maxHeight: "max-content"
+                                  }}>
+                                <Typography align={"center"}
+                                            variant="h6"
+                                            color={"primary"}>{item.city}</Typography>
+                            </Card>
                             <Card square={true} variant={"outlined"}
                                   style={{
                                       padding: "2%",
