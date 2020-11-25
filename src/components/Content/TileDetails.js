@@ -163,9 +163,9 @@ class TileDetails extends Component {
 
         const {item} = this.props.location.state
 
-        console.log("Address", item.address)
+        console.log("Coordinates", item.coordinates)
 
-        fetch(osmUrl.concat(item.address))
+        fetch(osmUrl.concat(item.coordinates))
             .then((response) => response.json())
             .then((data) => {
                 console.log('This is your data', data)
