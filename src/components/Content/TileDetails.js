@@ -183,7 +183,7 @@ class TileDetails extends Component {
                 <div className={classes.paper}>
                     <Typography align={"center"}
                                 variant="h5"
-                                className={classes.itemTitle}>{"Dettagli " + item.title}</Typography>
+                                className={classes.itemTitle}>{item.title}</Typography>
                     <Container style={{marginTop: '3%', marginBottom: '0%'}}>
                         <MyCarousel item={item}/>
                         <Box justifyContent={"center"} style={{display: "flex", marginTop: "2%"}}>
