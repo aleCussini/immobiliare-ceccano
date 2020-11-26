@@ -4,13 +4,12 @@ import React, {useState} from "react"
 import {makeStyles} from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
 
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-        maxWidth: 300,
+        margin: theme.spacing(2),
     },
     expand: {
         marginTop: '2%',
@@ -43,32 +42,20 @@ function sendFeedback () {
 function Contacts(){
     const classes = useStyles()
     return (
-
-<div align="center"><div>
-            <Typography variant="h4" align="center" style={{marginBottom: '1%'}}>
+        <Container maxWidth='md' align="center">
+            <Typography variant="h4" align="center" style={{margin: '3%'}}>
                 Scrivimi una mail
             </Typography>
-            <FormControl className={classes.formControl}>
-                        <TextField label={"Nome"} 
-                                   variant={"outlined"}
-                                   style={{width: 120}}/>
-                    </FormControl>
-                    <FormControl className={classes.formControl}>
-                        <TextField label={"Indirizzo Email"} 
-                                 
-                                   variant={"outlined"}
-                                   style={{width: 120}}/>
-                    </FormControl>
-                    </div>
-                    <div>
-                    <FormControl className={classes.formControl}>
-                        <TextField label={"Messaggio"} 
-                                   multiline
-                                   variant={"outlined"}
-                                   style={{width: 120}}/>
-                    </FormControl>
-                    <Button variant="contained" color="primary" onClick={sendFeedback()}>Invia</Button>
-        </div></div>
+                <TextField label={"Nome"} className={classes.formControl} fullWidth/>
+                <TextField label={"Indirizzo Email"} className={classes.formControl} fullWidth/>
+                
+                <TextField label={"Messaggio"} 
+                    multiline
+                    fullWidth
+                    className={classes.formControl}/>
+               
+                <Button variant="contained" color="primary" onClick={sendFeedback()}>Invia</Button>
+        </Container>
     )
 }
 
