@@ -12,6 +12,7 @@ import Drawer from "@material-ui/core/Drawer"
 import Divider from "@material-ui/core/Divider"
 import {Whatsapp} from "mdi-material-ui"
 import Box from "@material-ui/core/Box"
+import Image from 'material-ui-image'
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -28,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
     link: {
         margin: theme.spacing(1, 1.5),
         color:'#e0e4ff'
+    },
+    link: {
+        margin: theme.spacing(1, 1.5),
+        color:'#1c1c1c'
     },
     drawer: {
         // width: 240,
@@ -133,15 +138,16 @@ function MyAppBar({isMobile}) {
                             {links}
                             <Divider/>
                             <Box justifyContent={"center"} style={{display: "flex", marginTop: "5%"}}>
+                            <Link href={"https://www.facebook.com/immobiliarececcano/"}><IconButton>
+                                    <Facebook className={classes.mobileLink}/>
+                                </IconButton></Link>
                                 <IconButton>
-                                    <Facebook/>
+                                    <Whatsapp className={classes.mobileLink}/>
                                 </IconButton>
+                                <Link href={"/contacts"}>
                                 <IconButton>
-                                    <Whatsapp/>
-                                </IconButton>
-                                <IconButton>
-                                    <Email/>
-                                </IconButton>
+                                    <Email className={classes.mobileLink}/>
+                                </IconButton></Link>
                             </Box>
                         </Drawer>
                     </div>
