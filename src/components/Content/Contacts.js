@@ -5,7 +5,7 @@ import {makeStyles} from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-
+import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -42,7 +42,7 @@ function sendFeedback () {
 function Contacts(){
     const classes = useStyles()
     return (
-        <Container maxWidth='md' align="center">
+        <Container maxWidth='sm' align="center">
             <Typography variant="h4" align="center" style={{margin: '3%'}}>
                 Scrivimi una mail
             </Typography>
@@ -54,7 +54,12 @@ function Contacts(){
                     fullWidth
                     className={classes.formControl}/>
                
-                <Button variant="contained" color="primary" onClick={sendFeedback()}>Invia</Button>
+                <Button endIcon={<SendIcon />}
+                        className={classes.formControl}
+                        variant="contained" 
+                        color="primary" 
+                        fullWidth
+                        onClick={sendFeedback()}>Invia</Button>
         </Container>
     )
 }

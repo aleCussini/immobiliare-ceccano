@@ -49,8 +49,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: "0px"
     },
     footerMargin:{
-        margin:'0px',
+        marginBottom:'0px',
+        marginTop:'50px',
         color:'#e0e4ff'
+
     }
 }))
 
