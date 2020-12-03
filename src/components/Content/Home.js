@@ -12,7 +12,9 @@ import Drawer from "@material-ui/core/Drawer"
 import Divider from "@material-ui/core/Divider"
 import {Whatsapp} from "mdi-material-ui"
 import Box from "@material-ui/core/Box"
-import Image from 'material-ui-image'
+import{ init } from 'emailjs-com';
+
+init("user_zW0uNksKijlGA6iHPXoFG");
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -26,13 +28,13 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         color:'#e0e4ff'
     },
-    link: {
+    mobile_link: {
         margin: theme.spacing(1, 1.5),
-        color:'#e0e4ff'
+        color:'#1c1c1c'
     },
     link: {
         margin: theme.spacing(1, 1.5),
-        color:'#1c1c1c'
+        color:'#e0e4ff'
     },
     drawer: {
         // width: 240,
@@ -68,14 +70,14 @@ function MyAppBar({isMobile}) {
 
     const links = [
         <Link variant="h6"  href={"/services"}
-              className={classes.link}>
+              className={!isMobile ? classes.link : classes.mobile_link}>
             Servizi
         </Link>,
         <Link variant="h6"  href={"https://immobiliarestudioceccano.blogspot.com/"}
-              className={classes.link}>
+        className={!isMobile ? classes.link : classes.mobile_link}>
             Blog
         </Link>,
-        <Link variant="h6"  href={"/contacts"} className={classes.link}>
+        <Link variant="h6"  href={"/contacts"} className={!isMobile ? classes.link : classes.mobile_link}>
             Contatti
         </Link>
         /*<Link variant="h6"  href={"/"} className={classes.link}>
