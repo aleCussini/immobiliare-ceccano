@@ -39,7 +39,7 @@ class Content extends Component {
     }
 
     componentDidMount() {
-        let dataRef = db.ref("/data")
+        let dataRef = db.ref("/card")
         dataRef.on("value", snapshotData => {
             let allItems = []
             snapshotData.forEach(snapshot => {
