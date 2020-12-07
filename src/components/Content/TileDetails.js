@@ -15,6 +15,7 @@ import {Map, Marker, TileLayer} from 'react-leaflet'
 import FullscreenControl from "react-leaflet-fullscreen"
 import 'react-leaflet-fullscreen/dist/styles.css'
 import db from '../Firebase/firebase-db'
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 const osmUrl = "https://nominatim.openstreetmap.org/?format=json&limit=1&q="
 
@@ -157,41 +158,45 @@ const InfoTable = (props) => {
 }
 
 class TileDetails extends Component {
-    constructor(props){
+
+    constructor(props) {
         super(props)
-        this.state = {position: null, item: {}}
+        this.state = {position: null, item: null, loading: true}
     }
+
     componentDidMount() {
         window.scroll(0, 0)
-        const {dataRef} = this.props.location.state
-        console.log('dataRef ', dataRef)
-        let postRef = db.ref('data/'+dataRef)
-        postRef.on('value', snapshot => {
-            console.log(snapshot.val())
-            this.setState({item : snapshot.val()}, () => {
-                console.log("Coordinates", this.state.item.coordinates)
 
-                fetch(osmUrl.concat(this.state.item.coordinates))
+        let postRef = db.ref('data/' + this.props.location.state.dataRef)
+        console.log(postRef)
+        postRef.on('value',
+            snapshot => {
+                const item = snapshot.val()
+                console.log('fetched item', item)
+                console.log("Coordinates", item.coordinates)
+                fetch(osmUrl.concat(item.coordinates))
                     .then((response) => response.json())
                     .then((data) => {
                         console.log('This is your data', data)
                         const p = data[0]
-                        this.setState({position: [p.lat, p.lon]})
+                        this.setState({position: [p.lat, p.lon], item: item, loading: false})
                         console.log('Map state', this.state)
                     })
-                })
-        
-        })
+            }
+        )
     }
 
     render() {
+        console.log(this.state)
         const {classes} = this.props
         const {item} = this.state
-        return (
+        console.log('item', item)
+        return this.state.loading ?
+            <LinearProgress color={"secondary"}/> :
             <div className={classes.background}>
                 <div className={classes.paper}>
-                   
-                     <Typography align={"center"}
+
+                    <Typography align={"center"}
                                 variant="h5"
                                 className={classes.itemTitle}>{item.title}</Typography>
                     <Container style={{marginTop: '3%', marginBottom: '0%'}}>
@@ -259,18 +264,17 @@ class TileDetails extends Component {
                                         variant="h4"
                                         style={{marginTop: '5%'}}>{"Descrizione immobile"}</Typography>
                             <Container style={{marginTop: '5%', marginBottom: '10%', textAlign: 'center'}}>
-                                {/* {parse(item.content)} */}
+                                {parse(item.content)}
                             </Container>
                             <Typography align={"center"}
                                         variant="h4"
                                         style={{marginTop: '5%'}}>{"Informazioni immobile"}</Typography>
                             <InfoTable item={item} classes={classes}/>
-                            {this.state.position ? <MyMap position={this.state.position}/> : null}  
+                            {this.state.position ? <MyMap position={this.state.position}/> : null}
                         </div>
                     </Container>
                 </div>
             </div>
-        )
     }
 }
 
