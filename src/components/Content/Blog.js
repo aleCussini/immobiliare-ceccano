@@ -16,7 +16,6 @@ import Link from "@material-ui/core/Link"
 // }))
 
 function Blog({item}) {
-    console.log(item)
     return (
         <Link href={item.link}>
             <Card variant={"outlined"} style={{height: "max-content"}}>

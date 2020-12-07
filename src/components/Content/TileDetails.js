@@ -14,6 +14,7 @@ import {Box, withStyles} from "@material-ui/core"
 import {Map, Marker, TileLayer} from 'react-leaflet'
 import FullscreenControl from "react-leaflet-fullscreen"
 import 'react-leaflet-fullscreen/dist/styles.css'
+import db from '../Firebase/firebase-db'
 
 const osmUrl = "https://nominatim.openstreetmap.org/?format=json&limit=1&q="
 
@@ -156,32 +157,41 @@ const InfoTable = (props) => {
 }
 
 class TileDetails extends Component {
-    state = {position: null}
-
+    constructor(props){
+        super(props)
+        this.state = {position: null, item: {}}
+    }
     componentDidMount() {
         window.scroll(0, 0)
+        const {dataRef} = this.props.location.state
+        console.log('dataRef ', dataRef)
+        let postRef = db.ref('data/'+dataRef)
+        postRef.on('value', snapshot => {
+            console.log(snapshot.val())
+            this.setState({item : snapshot.val()}, () => {
+                console.log("Coordinates", this.state.item.coordinates)
 
-        const {item} = this.props.location.state
-
-        console.log("Coordinates", item.coordinates)
-
-        fetch(osmUrl.concat(item.coordinates))
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('This is your data', data)
-                const p = data[0]
-                this.setState({position: [p.lat, p.lon]})
-                console.log('Map state', this.state)
-            })
+                fetch(osmUrl.concat(this.state.item.coordinates))
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('This is your data', data)
+                        const p = data[0]
+                        this.setState({position: [p.lat, p.lon]})
+                        console.log('Map state', this.state)
+                    })
+                })
+        
+        })
     }
 
     render() {
-        const {item} = this.props.location.state
         const {classes} = this.props
+        const {item} = this.state
         return (
             <div className={classes.background}>
                 <div className={classes.paper}>
-                    <Typography align={"center"}
+                   
+                     <Typography align={"center"}
                                 variant="h5"
                                 className={classes.itemTitle}>{item.title}</Typography>
                     <Container style={{marginTop: '3%', marginBottom: '0%'}}>
@@ -249,13 +259,13 @@ class TileDetails extends Component {
                                         variant="h4"
                                         style={{marginTop: '5%'}}>{"Descrizione immobile"}</Typography>
                             <Container style={{marginTop: '5%', marginBottom: '10%', textAlign: 'center'}}>
-                                {parse(item.content)}
+                                {/* {parse(item.content)} */}
                             </Container>
                             <Typography align={"center"}
                                         variant="h4"
                                         style={{marginTop: '5%'}}>{"Informazioni immobile"}</Typography>
                             <InfoTable item={item} classes={classes}/>
-                            {this.state.position ? <MyMap position={this.state.position}/> : null}
+                            {this.state.position ? <MyMap position={this.state.position}/> : null}  
                         </div>
                     </Container>
                 </div>

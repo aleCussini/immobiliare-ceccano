@@ -9,7 +9,6 @@ import Typography from "@material-ui/core/Typography"
 
 const ContentView = ({items, searchColumn, gridColumn, containerWidth}) => {
     let starredItems = items.filter(function (starredItem){
-        console.log(starredItem);
         return starredItem.starred == true;
     });
     const {width} = useWindowDimensions()

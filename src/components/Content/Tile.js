@@ -23,13 +23,12 @@ const useStyles = makeStyles((theme) => ({
 
 function Tile({item}) {
     const classes = useStyles()
-    console.log(item)
     return (
         <Card variant={"outlined"} style={{height: "max-content"}}>
             <CardActionArea component={Link}
                             to={{
                                 pathname: '/details',
-                                state: {item: item}
+                                state: {dataRef: item.dataRef}
                             }}>
                 <CardHeader
                     title={item.title}
