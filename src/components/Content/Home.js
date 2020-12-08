@@ -167,9 +167,10 @@ function MyFooter() {
                 Luca Mantua
             </Typography>
             <Typography variant="subtitle1" align="center" component="p" className={classes.link}>
-                +39 33331554687 - 
-                luca.mantua@mail.it - 
-                corso magellano, 84 - Monopoli (IT)
+                0775603936  3358118993 
+                immobiliarestudioceccano@gmail.com  
+                piva:03065300604 rea:fr198229 
+                Via Madonna della Pace,79 Ceccano(FR)
             </Typography>
             <Typography variant="body2" align="center" className={classes.footerMargin}>
                     Developed by MediaTeamSoftware

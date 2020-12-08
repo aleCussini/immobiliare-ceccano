@@ -49,7 +49,7 @@ const SearchBar = ({items, searchColumn}) => {
     const [city, setCity] = useState('')
     const [maxPrice, setMaxPrice] = useState(0)
     const [type, setType] = useState(0)
-    var types = ["","Appartamento, Indipendente"];
+    var types = ["","Appartamento", "Indipendente"];
 
     function search() {
         if (city) {
@@ -85,24 +85,25 @@ const SearchBar = ({items, searchColumn}) => {
                             <MenuItem value={''}>- tutti -</MenuItem>
                         </Select>
                     </FormControl>
+                    <FormControl className={classes.formControl}>
+                        <TextField label={"Prezzo Max."} inputMode={"numeric"}
+                                   onChange={e => setMaxPrice(e.target.value)}
+                                   variant={"outlined"}
+                                   style={{width: 120}}/>
+                    </FormControl>
                     <FormControl className={classes.formControl}
                                  variant={"outlined"}>
                         <InputLabel id="comune-select-label">Comune</InputLabel>
                         <Select labelId="comune-select-label" onChange={e => setCity(e.target.value)}
                                 label={"Comune"}
                                 children={[
-                                    <MenuItem value={'Roma'}>Roma</MenuItem>,
-                                    <MenuItem value={'Firenze'}>Firenze</MenuItem>,
-                                    <MenuItem value={'Bari'}>Bari</MenuItem>,
+                                    <MenuItem value={'Ceccano'}>Ceccano</MenuItem>,
+                                    <MenuItem value={'Pastena'}>Pastena</MenuItem>,
+                                    <MenuItem value={'Frosinone'}>Frosinone</MenuItem>,
+                                    <MenuItem value={'Giuliano di Roma'}>Giuliano di Roma</MenuItem>,
                                     <MenuItem value={''}>- tutti -</MenuItem>
                                 ]}
                         />
-                    </FormControl>
-                    <FormControl className={classes.formControl}>
-                        <TextField label={"Prezzo Max."} inputMode={"numeric"}
-                                   onChange={e => setMaxPrice(e.target.value)}
-                                   variant={"outlined"}
-                                   style={{width: 120}}/>
                     </FormControl>
                 </div>
                 <div style={{display: 'flex'}}>

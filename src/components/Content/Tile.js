@@ -37,7 +37,7 @@ function Tile({item}) {
                 <CardMedia component={"img"} image={item.image.src}/>
                 <CardContent>
                     <Typography className={classes.link}>
-                        <Home className={classes.icon} />{item.address}
+                        <Home className={classes.icon} />{item.address}, {item.city}
                     </Typography>                    
                     <Breadcrumbs separator={"|"} style={{paddingTop: "5%"}}>
                         <Typography className={classes.link}>
