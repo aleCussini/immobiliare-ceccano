@@ -131,8 +131,8 @@ const InfoTable = (props) => {
     const types = ["", "Appartamento", "Indipendente"]
     const item = props.item
     const classes = props.classes
-    const leftInfo = [{"Tipologia": types[item.type]}, {"Piano": item.floor}, {"Provincia": item.province}, {"Riscaldamento": item.heating == 'False' ? 'No' : 'Si'}, {"Condizionatori": item.airconditioners == 'False' ? 'No' : 'Si'}]
-    const rightInfo = [{"Indirizzo": item.address}, {"Comune": item.city}, {"Bagni": item.bathrooms}, {"Camere": item.rooms}, {"MQ Commerciali": item.squaremeters}, {"MQ calpestabili": item.realsquaremeters}]
+    const leftInfo = [{"Tipologia": types[item.type]}, {"Piano": item.floor}, {"Provincia": item.province}, {"Riscaldamento": item.heating}, {"Condizionatori": item.airconditioners == 'False' ? 'No' : 'Si'}, {"Dati APE" : item.ape}, {'Stato' : item.status}]
+    const rightInfo = [{"Indirizzo": item.address}, {"Comune": item.city}, {"Bagni": item.bathrooms}, {"Camere": item.rooms}, {"MQ Commerciali": item.squaremeters}, {"MQ calpestabili": item.realsquaremeters}, {"Anno di Costruzione": item.year}]
     return (
         <div className={classes.infoTable}>
             <Container className={classes.leftInfoTable}>
