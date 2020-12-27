@@ -1,7 +1,6 @@
 import React, {Component} from "react"
 import Typography from "@material-ui/core/Typography"
 import Container from "@material-ui/core/Container"
-import CardMedia from "@material-ui/core/CardMedia"
 import Card from "@material-ui/core/Card"
 import "react-alice-carousel/lib/alice-carousel.css"
 import Grid from "@material-ui/core/Grid"
@@ -15,8 +14,8 @@ import {Map, Marker, TileLayer} from 'react-leaflet'
 import FullscreenControl from "react-leaflet-fullscreen"
 import 'react-leaflet-fullscreen/dist/styles.css'
 import db from '../Firebase/firebase-db'
-import storage from '../Firebase/firebase-storage'
-import LinearProgress from "@material-ui/core/LinearProgress";
+import LinearProgress from "@material-ui/core/LinearProgress"
+import storage from "../Firebase/firebase-storage"
 
 const osmUrl = "https://nominatim.openstreetmap.org/?format=json&limit=1&q="
 
@@ -66,16 +65,24 @@ const styles = theme => ({
         },
     }
 })
+const handleDragStart = (e) => e.preventDefault()
 
 class MyCarousel extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            galleryItems: props.item.gallery.map(image =>
-                <Card style={{maxWidth: "max-content", margin: "auto"}}>
-                    <CardMedia component={"img"} image={image.src}/>
-                </Card>)
+            galleryItems: []
         }
+    }
+
+    componentDidMount() {
+        console.log("###itemId###", this.props.item.id)
+        storage.ref('images/' + this.props.item.id)
+            .listAll()
+            .then(value => value.items.map(i => i.getDownloadURL().then(
+                imgUrl => this.state.galleryItems.push(<img src={imgUrl}/>)
+            )))
+        console.log("###state.galleryItems###", this.state.galleryItems)
     }
 
     thumbItem = (item, i) => (
@@ -132,7 +139,7 @@ const InfoTable = (props) => {
     const types = ["", "Appartamento", "Indipendente"]
     const item = props.item
     const classes = props.classes
-    const leftInfo = [{"Tipologia": types[item.type]}, {"Piano": item.floor}, {"Provincia": item.province}, {"Riscaldamento": item.heating}, {"Condizionatori": item.airconditioners == 'False' ? 'No' : 'Si'}, {"Dati APE" : item.ape}, {'Stato' : item.status}]
+    const leftInfo = [{"Tipologia": types[item.type]}, {"Piano": item.floor}, {"Provincia": item.province}, {"Riscaldamento": item.heating}, {"Condizionatori": item.airconditioners == 'False' ? 'No' : 'Si'}, {"Dati APE": item.ape}, {'Stato': item.status}]
     const rightInfo = [{"Indirizzo": item.address}, {"Comune": item.city}, {"Bagni": item.bathrooms}, {"Camere": item.rooms}, {"MQ Commerciali": item.squaremeters}, {"MQ calpestabili": item.realsquaremeters}, {"Anno di Costruzione": item.year}]
     return (
         <div className={classes.infoTable}>
@@ -167,9 +174,7 @@ class TileDetails extends Component {
 
     componentDidMount() {
         window.scroll(0, 0)
-        console.log("[Tile Details] - component did mount: ", this.props.location.state.dataRef)
         let postRef = db.ref('data/' + this.props.location.state.dataRef)
-        console.log(postRef)
         postRef.on('value',
             snapshot => {
                 const item = snapshot.val()
@@ -178,17 +183,14 @@ class TileDetails extends Component {
                 fetch(osmUrl.concat(item.coordinates))
                     .then((response) => response.json())
                     .then((data) => {
-                        console.log('This is your data', data)
                         const p = data[0]
                         this.setState({position: [p.lat, p.lon], item: item, loading: false})
-                        console.log('Map state', this.state)
                     })
             }
         )
     }
 
     render() {
-        console.log(this.state)
         const {classes} = this.props
         const {item} = this.state
         console.log('item', item)

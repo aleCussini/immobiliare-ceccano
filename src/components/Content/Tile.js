@@ -34,7 +34,7 @@ function Tile({item}) {
                     title={item.title}
                     subheader={item.price + ' €'}
                 />
-                <CardMedia component={"img"} image={item.image.src}/>
+                {/*<CardMedia component={"img"} image={item.image.src}/>*/}
                 <CardContent>
                     <Typography className={classes.link}>
                         <Home className={classes.icon} />{item.address}, {item.city}
