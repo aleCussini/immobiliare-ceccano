@@ -65,7 +65,6 @@ const styles = theme => ({
         },
     }
 })
-const handleDragStart = (e) => e.preventDefault()
 
 class MyCarousel extends Component {
     constructor(props) {
