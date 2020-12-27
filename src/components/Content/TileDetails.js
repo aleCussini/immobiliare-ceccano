@@ -15,6 +15,7 @@ import {Map, Marker, TileLayer} from 'react-leaflet'
 import FullscreenControl from "react-leaflet-fullscreen"
 import 'react-leaflet-fullscreen/dist/styles.css'
 import db from '../Firebase/firebase-db'
+import storage from '../Firebase/firebase-storage'
 import LinearProgress from "@material-ui/core/LinearProgress";
 
 const osmUrl = "https://nominatim.openstreetmap.org/?format=json&limit=1&q="
@@ -166,7 +167,7 @@ class TileDetails extends Component {
 
     componentDidMount() {
         window.scroll(0, 0)
-
+        console.log("[Tile Details] - component did mount: ", this.props.location.state.dataRef)
         let postRef = db.ref('data/' + this.props.location.state.dataRef)
         console.log(postRef)
         postRef.on('value',

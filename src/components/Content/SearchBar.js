@@ -122,7 +122,7 @@ const SearchBar = ({items, searchColumn}) => {
                             component={Link}
                             to={{
                                 pathname: '/details',
-                                state: {item: r}
+                                state: {dataRef: r.dataRef}
                             }}>
                             <img src={r.image.src} alt={r.title}/>
                             <GridListTileBar
