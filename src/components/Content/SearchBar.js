@@ -124,7 +124,7 @@ const SearchBar = ({items, searchColumn}) => {
                                 pathname: '/details',
                                 state: {dataRef: r.dataRef}
                             }}>
-                            <img src={r.image.src} alt={r.title}/>
+                            <img src={r.image} alt={r.title}/>
                             <GridListTileBar
                                 title={r.title}
                                 subtitle={r.price + ' €'}
