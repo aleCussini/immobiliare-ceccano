@@ -6,15 +6,15 @@ import {makeStyles, useTheme} from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
 import Routes from "../Routes"
 import IconButton from "@material-ui/core/IconButton"
-import {ChevronLeft, ChevronRight, Facebook, Email, Menu} from "@material-ui/icons"
+import {ChevronLeft, ChevronRight, Email, Facebook, Menu} from "@material-ui/icons"
 import {useWindowDimensions} from "../WindowDimensionsProvider"
 import Drawer from "@material-ui/core/Drawer"
 import Divider from "@material-ui/core/Divider"
 import {Whatsapp} from "mdi-material-ui"
 import Box from "@material-ui/core/Box"
-import{ init } from 'emailjs-com';
+import {init} from 'emailjs-com'
 
-init("user_zW0uNksKijlGA6iHPXoFG");
+init("user_zW0uNksKijlGA6iHPXoFG")
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -26,15 +26,15 @@ const useStyles = makeStyles((theme) => ({
     },
     toolbarTitle: {
         flexGrow: 1,
-        color:'#e0e4ff'
+        color: '#e0e4ff'
     },
     mobile_link: {
         margin: theme.spacing(1, 1.5),
-        color:'#1c1c1c'
+        color: '#1c1c1c'
     },
     link: {
         margin: theme.spacing(1, 1.5),
-        color:'#e0e4ff'
+        color: '#e0e4ff'
     },
     drawer: {
         // width: 240,
@@ -51,14 +51,14 @@ const useStyles = makeStyles((theme) => ({
         ...theme.mixins.toolbar,
         justifyContent: 'flex-start',
     },
-    footer:{
+    footer: {
         backgroundColor: '#1c1c1c',
         marginTop: "0px"
     },
-    footerMargin:{
-        marginBottom:'0px',
-        marginTop:'50px',
-        color:'#e0e4ff'
+    footerMargin: {
+        marginBottom: '0px',
+        padding: "1%",
+        color: '#e0e4ff'
 
     }
 }))
@@ -69,15 +69,15 @@ function MyAppBar({isMobile}) {
     const theme = useTheme()
 
     const links = [
-        <Link variant="h6"  href={"/services"}
+        <Link variant="h6" href={"/services"}
               className={!isMobile ? classes.link : classes.mobile_link}>
             Servizi
         </Link>,
-        <Link variant="h6"  href={"https://immobiliarestudioceccano.blogspot.com/"}
-        className={!isMobile ? classes.link : classes.mobile_link}>
+        <Link variant="h6" href={"https://immobiliarestudioceccano.blogspot.com/"}
+              className={!isMobile ? classes.link : classes.mobile_link}>
             Blog
         </Link>,
-        <Link variant="h6"  href={"/contacts"} className={!isMobile ? classes.link : classes.mobile_link}>
+        <Link variant="h6" href={"/contacts"} className={!isMobile ? classes.link : classes.mobile_link}>
             Contatti
         </Link>
         /*<Link variant="h6"  href={"/"} className={classes.link}>
@@ -89,22 +89,22 @@ function MyAppBar({isMobile}) {
         <AppBar variant={"elevation"} position="sticky" color="transparent" elevation={0}
                 className={classes.appBar}>
             <Toolbar className={classes.toolbar}>
-                <Link variant="h6"  href={"/"} className={classes.toolbarTitle}>
+                <Link variant="h6" href={"/"} className={classes.toolbarTitle}>
                     Mantua Immobiliare
                 </Link>
                 {!isMobile ?
-                    <div style={{ flexGrow: 1}}>
+                    <div style={{flexGrow: 1}}>
                         <Link href={"https://www.facebook.com/immobiliarececcano/"}> <IconButton>
                             <Facebook className={classes.link}/>
                         </IconButton>
                         </Link>
                         <IconButton>
-                            <Whatsapp  className={classes.link}/>
+                            <Whatsapp className={classes.link}/>
                         </IconButton>
                         <Link href={"/contacts"}>
-                        <IconButton>
-                            <Email  className={classes.link}/>
-                        </IconButton>
+                            <IconButton>
+                                <Email className={classes.link}/>
+                            </IconButton>
                         </Link>
                     </div> : null}
                 {!isMobile ?
@@ -140,16 +140,16 @@ function MyAppBar({isMobile}) {
                             {links}
                             <Divider/>
                             <Box justifyContent={"center"} style={{display: "flex", marginTop: "5%"}}>
-                            <Link href={"https://www.facebook.com/immobiliarececcano/"}><IconButton>
-                                    <Facebook className={classes.mobileLink}/>
+                                <Link href={"https://www.facebook.com/immobiliarececcano/"}><IconButton>
+                                    <Facebook className={classes.mobile_link}/>
                                 </IconButton></Link>
                                 <IconButton>
-                                    <Whatsapp className={classes.mobileLink}/>
+                                    <Whatsapp className={classes.mobile_link}/>
                                 </IconButton>
                                 <Link href={"/contacts"}>
-                                <IconButton>
-                                    <Email className={classes.mobileLink}/>
-                                </IconButton></Link>
+                                    <IconButton>
+                                        <Email className={classes.mobile_link}/>
+                                    </IconButton></Link>
                             </Box>
                         </Drawer>
                     </div>
@@ -167,13 +167,13 @@ function MyFooter() {
                 Luca Mantua
             </Typography>
             <Typography variant="subtitle1" align="center" component="p" className={classes.link}>
-                0775603936  3358118993 
-                immobiliarestudioceccano@gmail.com  
-                piva:03065300604 rea:fr198229 
+                0775603936 3358118993
+                immobiliarestudioceccano@gmail.com
+                piva:03065300604 rea:fr198229
                 Via Madonna della Pace,79 Ceccano(FR)
             </Typography>
             <Typography variant="body2" align="center" className={classes.footerMargin}>
-                    Developed by MediaTeamSoftware
+                Developed by MediaTeamSoftware
             </Typography>
         </footer>
     )
