@@ -3,11 +3,9 @@ import Typography from "@material-ui/core/Typography"
 import Container from "@material-ui/core/Container"
 import Card from "@material-ui/core/Card"
 import "react-alice-carousel/lib/alice-carousel.css"
-import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
-import {Bathtub, Hotel, NavigateBefore, NavigateNext, SquareFoot} from "@material-ui/icons"
-import ReactAliceCarousel from "react-alice-carousel"
-import IconButton from "@material-ui/core/IconButton"
+import {Bathtub, Hotel, SquareFoot} from "@material-ui/icons"
+import AliceCarousel from "react-alice-carousel"
 import Divider from "@material-ui/core/Divider"
 import {Box, withStyles} from "@material-ui/core"
 import {Map, Marker, TileLayer} from 'react-leaflet'
@@ -15,7 +13,6 @@ import FullscreenControl from "react-leaflet-fullscreen"
 import 'react-leaflet-fullscreen/dist/styles.css'
 import db from '../Firebase/firebase-db'
 import LinearProgress from "@material-ui/core/LinearProgress"
-import storage from "../Firebase/firebase-storage"
 
 const osmUrl = "https://nominatim.openstreetmap.org/?format=json&limit=1&q="
 
@@ -70,17 +67,16 @@ class MyCarousel extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            galleryItems: []
+            galleryItems: [],
+            loading: true
         }
     }
 
     componentDidMount() {
-        console.log("###itemId###", this.props.item.id)
-        storage.ref('images/' + this.props.item.id)
-            .listAll()
-            .then(value => value.items.map(i => i.getDownloadURL().then(
-                imgUrl => this.state.galleryItems.push(<img src={imgUrl}/>)
-            )))
+        const item = this.props.item
+        console.log("###itemId###", item.id)
+        let galleryItems = item.gallery.map(i => <img src={i.url} alt={item.id}/>)
+        this.setState({galleryItems: galleryItems, loading: false})
         console.log("###state.galleryItems###", this.state.galleryItems)
     }
 
@@ -91,31 +87,46 @@ class MyCarousel extends Component {
     )
 
     render() {
-        return (
-            <div>
+        const responsive = {
+            0: {items: 1},
+            568: {items: 2},
+            1024: {items: 3},
+        }
+
+        return this.state.loading ?
+            <LinearProgress color={"secondary"}/> :
+            <AliceCarousel
+                items={this.state.galleryItems}
+                responsive={responsive}
+                ref={(el) => (this.Carousel = el)}
+            />
+        {
+            /*
+        <div>
                 <Grid
                     container
                     direction="row"
                     justify="space-evenly"
                     alignItems="center">
                     <Grid item>
-                        <IconButton onClick={() => this.Carousel.slidePrev()}><NavigateBefore/></IconButton>
+                        <IconButton onClick={() => this.Carousel.slidePrev(1)}><NavigateBefore/></IconButton>
                     </Grid>
                     <Grid item xs={8}>
-                        <ReactAliceCarousel
-                            dotsDisabled={true}
-                            buttonsDisabled={true}
+                        <AliceCarousel
                             items={this.state.galleryItems}
+                            responsive={responsive}
                             ref={(el) => (this.Carousel = el)}
+                            disableButtonsControls={true}
                         />
                     </Grid>
                     <Grid item>
-                        <IconButton onClick={() => this.Carousel.slideNext()}><NavigateNext/></IconButton>
+                        <IconButton onClick={() => this.Carousel.slideNext(1)}><NavigateNext/></IconButton>
                     </Grid>
                 </Grid>
-                {/*<nav>{images.map(this.thumbItem)}</nav>*/}
+                <nav>{images.map(this.thumbItem)}</nav>
             </div>
-        )
+            */
+        }
     }
 }
 
