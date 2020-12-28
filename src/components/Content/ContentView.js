@@ -8,9 +8,10 @@ import GridListTile from "@material-ui/core/GridListTile"
 import Typography from "@material-ui/core/Typography"
 
 const ContentView = ({items, searchColumn, gridColumn, containerWidth}) => {
-    let starredItems = items.filter(function (starredItem){
-        return starredItem.starred == true;
-    });
+    let starredItems = items.filter(function (starredItem) {
+        // eslint-disable-next-line eqeqeq
+        return starredItem.starred == true
+    })
     const {width} = useWindowDimensions()
     return (
         <Container maxWidth={containerWidth ? containerWidth : (width < 1088 ? "sm" : "lg")}>

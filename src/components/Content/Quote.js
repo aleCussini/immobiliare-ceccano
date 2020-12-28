@@ -5,12 +5,13 @@ import {makeStyles} from "@material-ui/core/styles"
 import FormatQuoteIcon from '@material-ui/icons/FormatQuote'
 import db from "../Firebase/firebase-db"
 
-var quoteText;
-var quoteQuery = db.ref('texts');
-quoteQuery.once('value').then(function(snapshotSet) {
+var quoteText
+var quoteQuery = db.ref('texts')
+quoteQuery.once('value').then(function (snapshotSet) {
     snapshotSet.forEach(snapshot => {
-        if(snapshot.val().scope == "quote"){
-            quoteText = snapshot.val().content;
+        // eslint-disable-next-line eqeqeq
+        if (snapshot.val().scope == "quote") {
+            quoteText = snapshot.val().content
         }
     })
 })

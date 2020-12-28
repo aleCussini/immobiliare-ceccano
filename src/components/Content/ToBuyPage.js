@@ -6,11 +6,12 @@ import Container from "@material-ui/core/Container"
 import "react-alice-carousel/lib/alice-carousel.css"
 import db from "../Firebase/firebase-db"
 
-var parse = require('html-react-parser');
-var toBuyText;
-db.ref('texts').once('value').then(function(snapshotSet) {
+var parse = require('html-react-parser')
+var toBuyText
+db.ref('texts').once('value').then(function (snapshotSet) {
     snapshotSet.forEach(snapshot => {
-        if(snapshot.val().scope=='toBuy'){
+        // eslint-disable-next-line eqeqeq
+        if (snapshot.val().scope == 'toBuy') {
             toBuyText = snapshot.val().richContent
         }
     })
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
         itemTitle: {
             marginTop: theme.spacing(3),
             marginBottom: theme.spacing(3),
-        }    
+        }
     })
 )
 

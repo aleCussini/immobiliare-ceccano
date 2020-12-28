@@ -9,12 +9,13 @@ import {makeStyles} from "@material-ui/core/styles"
 import {Link} from "react-router-dom"
 import db from "../Firebase/firebase-db"
 
-var bannerText;
-var bannerQuery = db.ref('texts');
-bannerQuery.once('value').then(function(snapshotSet) {
+var bannerText
+var bannerQuery = db.ref('texts')
+bannerQuery.once('value').then(function (snapshotSet) {
     snapshotSet.forEach(snapshot => {
-        if(snapshot.val().scope == "banner"){
-            bannerText = snapshot.val().content;
+        // eslint-disable-next-line eqeqeq
+        if (snapshot.val().scope == "banner") {
+            bannerText = snapshot.val().content
         }
     })
 })
@@ -36,8 +37,8 @@ function MyBanner() {
                     Mantua Immobiliare
                 </Typography>
                 <Typography variant="h5" align="center" className={classes.headerTitle} paragraph>
-                {bannerText}
-    </Typography> 
+                    {bannerText}
+                </Typography>
                 <div className={classes.heroButtons}>
                     <Grid container spacing={2} justify="center">
                         <Grid item>

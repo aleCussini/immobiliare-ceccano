@@ -16,7 +16,6 @@ import GridList from "@material-ui/core/GridList"
 import GridListTile from "@material-ui/core/GridListTile"
 import GridListTileBar from "@material-ui/core/GridListTileBar"
 import {ExpandLess} from "@material-ui/icons"
-import db from "../Firebase/firebase-db"
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -49,19 +48,22 @@ const SearchBar = ({items, searchColumn}) => {
     const [city, setCity] = useState('')
     const [maxPrice, setMaxPrice] = useState(0)
     const [type, setType] = useState(0)
-    var types = ["","Appartamento", "Indipendente"];
+
+    //const types = ["", "Appartamento", "Indipendente"]
 
     function search() {
         if (city) {
             items = items.filter(function (item) {
+                // eslint-disable-next-line eqeqeq
                 return item.city == city
             })
         }
         if (type)
             items = items.filter(function (item) {
+                // eslint-disable-next-line eqeqeq
                 return item.type == type
-        })
-        if(maxPrice){
+            })
+        if (maxPrice) {
             items = items.filter(function (item) {
                 return item.price < maxPrice
             })
