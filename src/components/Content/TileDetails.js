@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button"
 import {Bathtub, Hotel, SquareFoot} from "@material-ui/icons"
 import AliceCarousel from "react-alice-carousel"
 import Divider from "@material-ui/core/Divider"
-import {Box, withStyles} from "@material-ui/core"
+import {Box, CardMedia, withStyles} from "@material-ui/core"
 import {Map, Marker, TileLayer} from 'react-leaflet'
 import FullscreenControl from "react-leaflet-fullscreen"
 import 'react-leaflet-fullscreen/dist/styles.css'
@@ -75,7 +75,10 @@ class MyCarousel extends Component {
     componentDidMount() {
         const item = this.props.item
         console.log("###itemId###", item.id)
-        let galleryItems = item.gallery.map(i => <img src={i.url} alt={item.id}/>)
+        let galleryItems = item.gallery.map(i =>
+            <Card style={{maxWidth: "max-content", margin: "1%"}}>
+                <CardMedia component={"img"} image={i.url}/>
+            </Card>)
         this.setState({galleryItems: galleryItems, loading: false})
         console.log("###state.galleryItems###", this.state.galleryItems)
     }
@@ -98,7 +101,6 @@ class MyCarousel extends Component {
             <AliceCarousel
                 items={this.state.galleryItems}
                 responsive={responsive}
-                ref={(el) => (this.Carousel = el)}
             />
         {
             /*
