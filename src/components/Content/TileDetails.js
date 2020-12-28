@@ -3,11 +3,10 @@ import Typography from "@material-ui/core/Typography"
 import Container from "@material-ui/core/Container"
 import Card from "@material-ui/core/Card"
 import "react-alice-carousel/lib/alice-carousel.css"
-import Button from "@material-ui/core/Button"
-import {Bathtub, Hotel, SquareFoot} from "@material-ui/icons"
+import {Bathtub, Hotel, NavigateBefore, NavigateNext, SquareFoot} from "@material-ui/icons"
 import AliceCarousel from "react-alice-carousel"
 import Divider from "@material-ui/core/Divider"
-import {Box, CardMedia, withStyles} from "@material-ui/core"
+import {Box, CardMedia, Grid, IconButton, withStyles} from "@material-ui/core"
 import {Map, Marker, TileLayer} from 'react-leaflet'
 import FullscreenControl from "react-leaflet-fullscreen"
 import 'react-leaflet-fullscreen/dist/styles.css'
@@ -83,28 +82,16 @@ class MyCarousel extends Component {
         console.log("###state.galleryItems###", this.state.galleryItems)
     }
 
-    thumbItem = (item, i) => (
-        <Button onClick={() => this.Carousel.slideTo(i)}>
-            <img src={item} width={50} height={50} alt={"thumb"}/>
-        </Button>
-    )
-
     render() {
         const responsive = {
             0: {items: 1},
             568: {items: 2},
-            1024: {items: 3},
+            1024: {items: 2},
         }
 
         return this.state.loading ?
             <LinearProgress color={"secondary"}/> :
-            <AliceCarousel
-                items={this.state.galleryItems}
-                responsive={responsive}
-            />
-        {
-            /*
-        <div>
+            <div>
                 <Grid
                     container
                     direction="row"
@@ -117,18 +104,15 @@ class MyCarousel extends Component {
                         <AliceCarousel
                             items={this.state.galleryItems}
                             responsive={responsive}
-                            ref={(el) => (this.Carousel = el)}
                             disableButtonsControls={true}
+                            ref={(el) => (this.Carousel = el)}
                         />
                     </Grid>
                     <Grid item>
                         <IconButton onClick={() => this.Carousel.slideNext(1)}><NavigateNext/></IconButton>
                     </Grid>
                 </Grid>
-                <nav>{images.map(this.thumbItem)}</nav>
             </div>
-            */
-        }
     }
 }
 
