@@ -119,7 +119,7 @@ class MyCarousel extends Component {
 const MyMap = ({position}) => {
     return (
         <Container style={{paddingBottom: '5%'}}>
-            <Map center={position} zoom={20}>
+            <Map center={position} zoom={15}>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -162,7 +162,6 @@ const InfoTable = (props) => {
 }
 
 class TileDetails extends Component {
-
     constructor(props) {
         super(props)
         this.state = {position: null, item: null, loading: true}
